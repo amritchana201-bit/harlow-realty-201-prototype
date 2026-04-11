@@ -6,16 +6,16 @@ import { SectionWrapper } from '@/components/ui/section-wrapper'
 
 export function AgentCards() {
   return (
-    <SectionWrapper id="agents" bgColor="cream" className="relative -mt-32 pt-48 md:-mt-40 md:pt-56">
+    <SectionWrapper id="agents" bgColor="navy" className="relative -mt-32 pt-48 md:-mt-40 md:pt-56">
       <div className="max-w-2xl mx-auto text-center">
         <motion.h2
           initial={{ opacity: 0, y: 32 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="text-3xl md:text-4xl font-semibold text-harlow-black mb-8"
+          className="text-3xl md:text-4xl font-semibold text-[#F5F5F5] mb-8"
         >
-          Meet Sarah and Chris
+          Meet <span className="text-[#27e9b5]">Sarah</span> and Chris
         </motion.h2>
 
         <motion.div
@@ -39,7 +39,7 @@ export function AgentCards() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
-          className="text-lg text-harlow-black/70 leading-relaxed"
+          className="text-lg text-[#F5F5F5]/70 leading-relaxed"
         >
           From the first hello to the final move, they are here to guide you.
         </motion.p>

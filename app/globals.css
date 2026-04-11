@@ -4,14 +4,17 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Harlow Realty Brand Colors */
-  --harlow-primary: #7EC8D8;
-  --harlow-primary-light: #E8F8FB;
-  --harlow-primary-medium: #B8E4F0;
-  --harlow-primary-dark: #6FAFBE;
-  --harlow-primary-darker: #4E8E9D;
-  --harlow-white: #FFFFFF;
-  --harlow-black: #0A0A0A;
+  /* Harlow Realty Brand Colors - New Dark Theme */
+  --harlow-primary: #27e9b5;
+  --harlow-primary-light: #27e9b5;
+  --harlow-primary-medium: #27e9b5;
+  --harlow-primary-dark: #1fd4a4;
+  --harlow-primary-darker: #19b88e;
+  --harlow-white: #F5F5F5;
+  --harlow-black: #162936;
+  --harlow-navy: #162936;
+  --harlow-accent: #27e9b5;
+  --harlow-offwhite: #F5F5F5;
 
   /* Shadcn tokens mapped to Harlow palette */
   --background: oklch(0.97 0.01 200);
@@ -105,10 +108,11 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply text-harlow-black antialiased;
-    background: linear-gradient(180deg, #E8F8FB 0%, #B8E4F0 100%);
+    @apply antialiased;
+    background: linear-gradient(180deg, #162936 0%, #1a3040 50%, #162936 100%);
     background-attachment: fixed;
     min-height: 100vh;
+    color: #F5F5F5;
   }
   html {
     scroll-behavior: smooth;

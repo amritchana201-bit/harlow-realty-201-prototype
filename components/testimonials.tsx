@@ -14,30 +14,40 @@ const testimonials = [
     location: 'Oakville',
     quote:
       'Harlow Realty made our dream home a reality. Their attention to detail and market knowledge is unmatched.',
+    rating: 5,
+    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face',
   },
   {
     name: 'David Park',
     location: 'Toronto',
     quote:
       'Professional, responsive, and truly cared about finding the right property for my family. Highly recommend!',
+    rating: 5,
+    image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face',
   },
   {
     name: 'Lisa Chen',
     location: 'Mississauga',
     quote:
       'From our first meeting to closing day, the team at Harlow was exceptional. They exceeded every expectation.',
+    rating: 5,
+    image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face',
   },
   {
     name: 'Robert & Maria Santos',
     location: 'Burlington',
     quote:
       "We've worked with many agents over the years. None compare to the service we received from Harlow Realty.",
+    rating: 4.5,
+    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=face',
   },
   {
     name: 'Amanda Williams',
     location: 'Toronto',
     quote:
       'Sold our condo in just two weeks above asking price. The marketing strategy was brilliant.',
+    rating: 5,
+    image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face',
   },
 ]
 
@@ -97,16 +107,16 @@ export function Testimonials() {
   }, [maxIndex])
 
   return (
-    <SectionWrapper id="testimonials" bgColor="evergreen">
+    <SectionWrapper id="testimonials" bgColor="navy">
       <motion.div
         initial={{ opacity: 0, y: 32 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-        className="text-center mb-12 md:mb-16"
+        className="text-center mb-10 md:mb-14"
       >
-        <h2 className="text-3xl md:text-4xl font-semibold text-[#F6E9D9] mb-4">
-          What Our Clients Say
+        <h2 className="text-3xl md:text-4xl font-semibold text-[#F5F5F5]">
+          Client <span className="text-[#27e9b5]">Stories</span>
         </h2>
       </motion.div>
 
@@ -120,13 +130,13 @@ export function Testimonials() {
             onClick={goToPrev}
             disabled={!canGoPrev}
             className={cn(
-              'h-12 w-12 rounded-full border-[#F6E9D9]/30 bg-[#F6E9D9]/15 backdrop-blur-sm shadow-md',
-              'hover:bg-[#F6E9D9]/25 hover:border-[#F6E9D9] transition-all',
+              'h-12 w-12 rounded-full border-white/20 bg-[#1a3040] shadow-md',
+              'hover:bg-[#27e9b5]/20 hover:border-[#27e9b5]/40 transition-all',
               'disabled:opacity-40 disabled:cursor-not-allowed'
             )}
             aria-label="Previous testimonial"
           >
-            <ChevronLeft className="h-6 w-6 text-[#F6E9D9]" />
+            <ChevronLeft className="h-6 w-6 text-[#F5F5F5]" />
           </Button>
         </div>
 
@@ -137,13 +147,13 @@ export function Testimonials() {
             onClick={goToNext}
             disabled={!canGoNext}
             className={cn(
-              'h-12 w-12 rounded-full border-[#F6E9D9]/30 bg-[#F6E9D9]/15 backdrop-blur-sm shadow-md',
-              'hover:bg-[#F6E9D9]/25 hover:border-[#F6E9D9] transition-all',
+              'h-12 w-12 rounded-full border-white/20 bg-[#1a3040] shadow-md',
+              'hover:bg-[#27e9b5]/20 hover:border-[#27e9b5]/40 transition-all',
               'disabled:opacity-40 disabled:cursor-not-allowed'
             )}
             aria-label="Next testimonial"
           >
-            <ChevronRight className="h-6 w-6 text-[#F6E9D9]" />
+            <ChevronRight className="h-6 w-6 text-[#F5F5F5]" />
           </Button>
         </div>
 
@@ -186,13 +196,13 @@ export function Testimonials() {
             onClick={goToPrev}
             disabled={!canGoPrev}
             className={cn(
-              'h-12 w-12 rounded-full border-[#F6E9D9]/30 bg-[#F6E9D9]/15',
-              'hover:bg-[#F6E9D9]/25 hover:border-[#F6E9D9] transition-all',
+              'h-12 w-12 rounded-full border-white/20 bg-[#1a3040]',
+              'hover:bg-[#27e9b5]/20 hover:border-[#27e9b5]/40 transition-all',
               'disabled:opacity-40 disabled:cursor-not-allowed'
             )}
             aria-label="Previous testimonial"
           >
-            <ChevronLeft className="h-6 w-6 text-[#F6E9D9]" />
+            <ChevronLeft className="h-6 w-6 text-[#F5F5F5]" />
           </Button>
           <Button
             variant="outline"
@@ -200,13 +210,13 @@ export function Testimonials() {
             onClick={goToNext}
             disabled={!canGoNext}
             className={cn(
-              'h-12 w-12 rounded-full border-[#F6E9D9]/30 bg-[#F6E9D9]/15',
-              'hover:bg-[#F6E9D9]/25 hover:border-[#F6E9D9] transition-all',
+              'h-12 w-12 rounded-full border-white/20 bg-[#1a3040]',
+              'hover:bg-[#27e9b5]/20 hover:border-[#27e9b5]/40 transition-all',
               'disabled:opacity-40 disabled:cursor-not-allowed'
             )}
             aria-label="Next testimonial"
           >
-            <ChevronRight className="h-6 w-6 text-[#F6E9D9]" />
+            <ChevronRight className="h-6 w-6 text-[#F5F5F5]" />
           </Button>
         </div>
 
@@ -219,8 +229,8 @@ export function Testimonials() {
               className={cn(
                 'w-2 h-2 rounded-full transition-all duration-300',
                 index === currentIndex
-                  ? 'w-6 bg-[#F6E9D9]'
-                  : 'bg-[#F6E9D9]/30 hover:bg-[#F6E9D9]/50'
+                  ? 'w-6 bg-[#27e9b5]'
+                  : 'bg-[#F5F5F5]/20 hover:bg-[#27e9b5]/40'
               )}
               aria-label={`Go to testimonial ${index + 1}`}
             />
