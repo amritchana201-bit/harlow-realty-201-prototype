@@ -30,7 +30,7 @@ function StarRating({ rating = 5 }: { rating?: number }) {
       ))}
       {hasHalfStar && (
         <div className="relative">
-          <Star size={16} className="text-harlow-black/20" />
+          <Star size={16} className="text-[#F5F5F5]/20" />
           <div className="absolute inset-0 overflow-hidden w-1/2">
             <Star size={16} className="fill-amber-400 text-amber-400" />
           </div>
@@ -40,7 +40,7 @@ function StarRating({ rating = 5 }: { rating?: number }) {
         <Star
           key={`empty-${i}`}
           size={16}
-          className="text-harlow-black/20"
+          className="text-[#F5F5F5]/20"
         />
       ))}
     </div>
@@ -54,8 +54,8 @@ export function TestimonialCard({
   return (
     <article
       className={cn(
-        'bg-white rounded-2xl shadow-md p-6 md:p-8 h-full flex flex-col',
-        'border border-harlow-black/5',
+        'bg-[#1a3040] rounded-2xl shadow-md p-6 md:p-8 h-full flex flex-col',
+        'border border-white/10',
         className
       )}
     >
@@ -66,7 +66,7 @@ export function TestimonialCard({
 
       {/* Quote */}
       <blockquote className="flex-1 mb-6">
-        <p className="text-base md:text-lg text-harlow-black/80 leading-relaxed">
+        <p className="text-base md:text-lg text-[#F5F5F5]/85 leading-relaxed">
           &ldquo;{testimonial.quote}&rdquo;
         </p>
       </blockquote>
@@ -74,7 +74,7 @@ export function TestimonialCard({
       {/* Footer with profile image */}
       <footer className="flex items-center gap-3 flex-shrink-0">
         {/* Profile Image */}
-        <div className="relative w-10 h-10 rounded-full overflow-hidden bg-harlow-black/5 flex-shrink-0">
+        <div className="relative w-10 h-10 rounded-full overflow-hidden bg-[#27e9b5]/10 flex-shrink-0">
           {testimonial.image ? (
             <Image
               src={testimonial.image}
@@ -84,7 +84,7 @@ export function TestimonialCard({
               sizes="40px"
             />
           ) : (
-            <div className="w-full h-full flex items-center justify-center text-harlow-black/40 text-sm font-medium">
+            <div className="w-full h-full flex items-center justify-center text-[#27e9b5] text-sm font-medium">
               {testimonial.name.split(' ').map(n => n[0]).join('').slice(0, 2)}
             </div>
           )}
@@ -92,10 +92,10 @@ export function TestimonialCard({
 
         {/* Name and Location */}
         <div>
-          <p className="font-semibold text-harlow-black text-sm">
+          <p className="font-semibold text-[#F5F5F5] text-sm">
             {testimonial.name}
           </p>
-          <p className="text-xs text-harlow-black/60">{testimonial.location}</p>
+          <p className="text-xs text-[#F5F5F5]/60">{testimonial.location}</p>
         </div>
       </footer>
     </article>

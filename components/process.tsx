@@ -76,8 +76,8 @@ function TimelineStep({
           className={cn(
             'w-14 h-14 md:w-16 md:h-16 rounded-2xl flex items-center justify-center transition-all duration-500',
             isActive 
-              ? 'bg-[#F6E9D9] shadow-lg shadow-[#F6E9D9]/20' 
-              : 'bg-[#F6E9D9]/15 border border-[#F6E9D9]/30'
+              ? 'bg-[#27e9b5] shadow-lg shadow-[#27e9b5]/20' 
+              : 'bg-[#27e9b5]/15 border border-[#27e9b5]/30'
           )}
           style={{
             transform: isActive ? 'scale(1.05)' : 'scale(1)',
@@ -87,7 +87,7 @@ function TimelineStep({
             size={24} 
             className={cn(
               'transition-colors duration-500',
-              isActive ? 'text-[#043222]' : 'text-[#F6E9D9]/70'
+              isActive ? 'text-[#162936]' : 'text-[#27e9b5]/70'
             )} 
           />
         </div>
@@ -103,13 +103,13 @@ function TimelineStep({
       >
         <h3 className={cn(
           'text-lg md:text-xl font-semibold mb-2 transition-colors duration-500',
-          isActive ? 'text-[#F6E9D9]' : 'text-[#F6E9D9]/70'
+          isActive ? 'text-[#F5F5F5]' : 'text-[#F5F5F5]/70'
         )}>
           {step.title}
         </h3>
         <p className={cn(
           'text-sm md:text-base leading-relaxed transition-colors duration-500',
-          isActive ? 'text-[#F6E9D9]/85' : 'text-[#F6E9D9]/50'
+          isActive ? 'text-[#F5F5F5]/85' : 'text-[#F5F5F5]/50'
         )}>
           {step.description}
         </p>
@@ -118,9 +118,9 @@ function TimelineStep({
       {/* Vertical connector line (mobile/tablet) */}
       {!isLast && (
         <div className="absolute left-7 md:left-8 top-16 md:top-[4.5rem] w-0.5 h-[calc(100%-4rem)] lg:hidden">
-          <div className="w-full h-full bg-[#F6E9D9]/20 rounded-full overflow-hidden">
+          <div className="w-full h-full bg-[#27e9b5]/20 rounded-full overflow-hidden">
             <motion.div 
-              className="w-full bg-[#F6E9D9]/60 rounded-full"
+              className="w-full bg-[#27e9b5]/60 rounded-full"
               style={{ height: `${Math.min(100, stepProgress * 100)}%` }}
             />
           </div>
@@ -143,7 +143,7 @@ export function Process() {
   const progress = useTransform(scrollYProgress, [0, 1], [0, 1])
 
   return (
-    <SectionWrapper id="process" bgColor="evergreen" className="overflow-hidden">
+    <SectionWrapper id="process" bgColor="navyLight" className="overflow-hidden">
       <div ref={sectionRef}>
         {/* Section Header */}
         <motion.div
@@ -153,10 +153,10 @@ export function Process() {
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           className="text-center mb-12 md:mb-16 lg:mb-20"
         >
-          <h2 className="text-3xl md:text-4xl font-semibold text-[#F6E9D9] mb-4">
-            Your Buyer Journey
+          <h2 className="text-3xl md:text-4xl font-semibold text-[#F5F5F5] mb-4">
+            Your Buyer <span className="text-[#27e9b5]">Journey</span>
           </h2>
-          <p className="text-lg text-[#F6E9D9]/70 max-w-2xl mx-auto">
+          <p className="text-lg text-[#F5F5F5]/70 max-w-2xl mx-auto">
             From first conversation to keys in hand, here is how we guide you home.
           </p>
         </motion.div>
@@ -181,9 +181,9 @@ export function Process() {
           <div className="hidden lg:block">
             {/* Horizontal progress line */}
             <div className="relative mb-8">
-              <div className="absolute top-8 left-8 right-8 h-0.5 bg-[#F6E9D9]/20 rounded-full">
+              <div className="absolute top-8 left-8 right-8 h-0.5 bg-[#27e9b5]/20 rounded-full">
                 <motion.div 
-                  className="h-full bg-[#F6E9D9]/60 rounded-full origin-left"
+                  className="h-full bg-[#27e9b5]/60 rounded-full origin-left"
                   style={{ scaleX: progress }}
                 />
               </div>
@@ -204,22 +204,22 @@ export function Process() {
                   >
                     {/* Icon */}
                     <motion.div
-                      className="mx-auto mb-4 w-16 h-16 rounded-2xl flex items-center justify-center bg-[#F6E9D9]/15 border border-[#F6E9D9]/30"
+                      className="mx-auto mb-4 w-16 h-16 rounded-2xl flex items-center justify-center bg-[#27e9b5]/15 border border-[#27e9b5]/30"
                       whileInView={{
-                        backgroundColor: 'rgba(246, 233, 217, 1)',
-                        borderColor: 'rgba(246, 233, 217, 0)',
+                        backgroundColor: 'rgba(39, 233, 181, 1)',
+                        borderColor: 'rgba(39, 233, 181, 0)',
                       }}
                       viewport={{ once: true, amount: 0.8 }}
                       transition={{ duration: 0.4, delay: index * 0.1 }}
                     >
-                      <Icon size={24} className="text-[#043222]" />
+                      <Icon size={24} className="text-[#162936]" />
                     </motion.div>
 
                     {/* Content */}
-                    <h3 className="text-base font-semibold text-[#F6E9D9] mb-2 leading-tight">
+                    <h3 className="text-base font-semibold text-[#F5F5F5] mb-2 leading-tight">
                       {step.title}
                     </h3>
-                    <p className="text-sm text-[#F6E9D9]/70 leading-relaxed">
+                    <p className="text-sm text-[#F5F5F5]/70 leading-relaxed">
                       {step.description}
                     </p>
                   </motion.div>

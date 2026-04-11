@@ -8,7 +8,7 @@ type SectionWrapperProps<T extends ElementType = 'section'> = {
   className?: string
   containerClassName?: string
   fullWidth?: boolean
-  bgColor?: 'cream' | 'evergreen' | 'none'
+  bgColor?: 'navy' | 'navyLight' | 'none'
 } & Omit<
   ComponentPropsWithoutRef<T>,
   'as' | 'id' | 'children' | 'className'
@@ -27,8 +27,8 @@ export function SectionWrapper<T extends ElementType = 'section'>({
   const Component = as || 'section'
 
   const bgColorClass = {
-    cream: 'bg-[#F6E9D9]',
-    evergreen: 'bg-[#043222]',
+    navy: 'bg-[#162936]',
+    navyLight: 'bg-[#1a3040]',
     none: '',
   }[bgColor]
 

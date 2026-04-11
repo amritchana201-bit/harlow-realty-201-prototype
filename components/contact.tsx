@@ -79,7 +79,7 @@ export function Contact() {
   }
 
   return (
-    <SectionWrapper id="contact" bgColor="cream">
+    <SectionWrapper id="contact" bgColor="navy">
       <div className="max-w-2xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 32 }}
@@ -88,10 +88,10 @@ export function Contact() {
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-semibold text-harlow-black mb-4">
-            Get in Touch
+          <h2 className="text-3xl md:text-4xl font-semibold text-[#F5F5F5] mb-4">
+            Get in <span className="text-[#27e9b5]">Touch</span>
           </h2>
-          <p className="text-lg text-harlow-black/70">
+          <p className="text-lg text-[#F5F5F5]/70">
             Ready to find your dream home? Contact us today and let&apos;s start
             your journey.
           </p>
@@ -103,7 +103,7 @@ export function Contact() {
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
           onSubmit={handleSubmit}
-          className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg p-6 md:p-10 border border-white/40"
+          className="bg-[#1a3040] backdrop-blur-sm rounded-2xl shadow-lg p-6 md:p-10 border border-white/10"
         >
           {isSuccess ? (
             <motion.div
@@ -111,9 +111,9 @@ export function Contact() {
               animate={{ opacity: 1, scale: 1 }}
               className="text-center py-8"
             >
-              <div className="w-16 h-16 bg-harlow-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="w-16 h-16 bg-[#27e9b5]/20 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg
-                  className="w-8 h-8 text-harlow-primary-darker"
+                  className="w-8 h-8 text-[#27e9b5]"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -126,10 +126,10 @@ export function Contact() {
                   />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold text-harlow-black mb-2">
+              <h3 className="text-xl font-semibold text-[#F5F5F5] mb-2">
                 Message Sent!
               </h3>
-              <p className="text-harlow-black/70">
+              <p className="text-[#F5F5F5]/70">
                 Thank you for reaching out. We&apos;ll be in touch soon.
               </p>
             </motion.div>
@@ -141,7 +141,7 @@ export function Contact() {
                     htmlFor="name"
                     className={cn(
                       'block text-sm font-medium mb-2 transition-colors',
-                      errors.name ? 'text-red-500' : 'text-harlow-black/80'
+                      errors.name ? 'text-red-500' : 'text-[#F5F5F5]/80'
                     )}
                   >
                     Name *
@@ -154,7 +154,7 @@ export function Contact() {
                     onChange={handleChange}
                     placeholder="Your name"
                     className={cn(
-                      'h-12 rounded-xl bg-white border-gray-200 focus:border-harlow-primary focus:ring-harlow-primary/20',
+                      'h-12 rounded-xl bg-[#162936] border-white/20 text-[#F5F5F5] placeholder:text-[#F5F5F5]/40 focus:border-[#27e9b5] focus:ring-[#27e9b5]/20',
                       errors.name && 'border-red-500 focus:border-red-500'
                     )}
                   />
@@ -165,7 +165,7 @@ export function Contact() {
                     htmlFor="email"
                     className={cn(
                       'block text-sm font-medium mb-2 transition-colors',
-                      errors.email ? 'text-red-500' : 'text-harlow-black/80'
+                      errors.email ? 'text-red-500' : 'text-[#F5F5F5]/80'
                     )}
                   >
                     Email *
@@ -178,7 +178,7 @@ export function Contact() {
                     onChange={handleChange}
                     placeholder="your@email.com"
                     className={cn(
-                      'h-12 rounded-xl bg-white border-gray-200 focus:border-harlow-primary focus:ring-harlow-primary/20',
+                      'h-12 rounded-xl bg-[#162936] border-white/20 text-[#F5F5F5] placeholder:text-[#F5F5F5]/40 focus:border-[#27e9b5] focus:ring-[#27e9b5]/20',
                       errors.email && 'border-red-500 focus:border-red-500'
                     )}
                   />
@@ -188,7 +188,7 @@ export function Contact() {
               <div>
                 <label
                   htmlFor="phone"
-                  className="block text-sm font-medium text-harlow-black/80 mb-2"
+                  className="block text-sm font-medium text-[#F5F5F5]/80 mb-2"
                 >
                   Phone (Optional)
                 </label>
@@ -199,7 +199,7 @@ export function Contact() {
                   value={formData.phone}
                   onChange={handleChange}
                   placeholder="(416) 555-0000"
-                  className="h-12 rounded-xl bg-white border-gray-200 focus:border-harlow-primary focus:ring-harlow-primary/20"
+                  className="h-12 rounded-xl bg-[#162936] border-white/20 text-[#F5F5F5] placeholder:text-[#F5F5F5]/40 focus:border-[#27e9b5] focus:ring-[#27e9b5]/20"
                 />
               </div>
 
@@ -208,7 +208,7 @@ export function Contact() {
                   htmlFor="message"
                   className={cn(
                     'block text-sm font-medium mb-2 transition-colors',
-                    errors.message ? 'text-red-500' : 'text-harlow-black/80'
+                    errors.message ? 'text-red-500' : 'text-[#F5F5F5]/80'
                   )}
                 >
                   Message *
@@ -221,7 +221,7 @@ export function Contact() {
                   placeholder="Tell us about your real estate needs..."
                   rows={5}
                   className={cn(
-                    'rounded-xl bg-white border-gray-200 focus:border-harlow-primary focus:ring-harlow-primary/20 resize-none',
+                    'rounded-xl bg-[#162936] border-white/20 text-[#F5F5F5] placeholder:text-[#F5F5F5]/40 focus:border-[#27e9b5] focus:ring-[#27e9b5]/20 resize-none',
                     errors.message && 'border-red-500 focus:border-red-500'
                   )}
                 />
@@ -230,7 +230,7 @@ export function Contact() {
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full h-14 bg-harlow-primary hover:bg-harlow-primary-dark text-harlow-black font-medium text-base rounded-xl shadow-md hover:shadow-lg transition-all duration-300"
+                className="w-full h-14 bg-[#27e9b5] hover:bg-[#1fd4a4] text-[#162936] font-medium text-base rounded-xl shadow-md hover:shadow-lg transition-all duration-300"
               >
                 {isSubmitting ? (
                   <span className="flex items-center gap-2">

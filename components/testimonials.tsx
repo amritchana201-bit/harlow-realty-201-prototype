@@ -107,7 +107,7 @@ export function Testimonials() {
   }, [maxIndex])
 
   return (
-    <SectionWrapper id="testimonials" bgColor="cream">
+    <SectionWrapper id="testimonials" bgColor="navy">
       <motion.div
         initial={{ opacity: 0, y: 32 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -115,8 +115,8 @@ export function Testimonials() {
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         className="text-center mb-10 md:mb-14"
       >
-        <h2 className="text-3xl md:text-4xl font-semibold text-harlow-black">
-          Client Stories
+        <h2 className="text-3xl md:text-4xl font-semibold text-[#F5F5F5]">
+          Client <span className="text-[#27e9b5]">Stories</span>
         </h2>
       </motion.div>
 
@@ -130,13 +130,13 @@ export function Testimonials() {
             onClick={goToPrev}
             disabled={!canGoPrev}
             className={cn(
-              'h-12 w-12 rounded-full border-harlow-black/10 bg-white shadow-md',
-              'hover:bg-harlow-black/5 hover:border-harlow-black/20 transition-all',
+              'h-12 w-12 rounded-full border-white/20 bg-[#1a3040] shadow-md',
+              'hover:bg-[#27e9b5]/20 hover:border-[#27e9b5]/40 transition-all',
               'disabled:opacity-40 disabled:cursor-not-allowed'
             )}
             aria-label="Previous testimonial"
           >
-            <ChevronLeft className="h-6 w-6 text-harlow-black" />
+            <ChevronLeft className="h-6 w-6 text-[#F5F5F5]" />
           </Button>
         </div>
 
@@ -147,13 +147,13 @@ export function Testimonials() {
             onClick={goToNext}
             disabled={!canGoNext}
             className={cn(
-              'h-12 w-12 rounded-full border-harlow-black/10 bg-white shadow-md',
-              'hover:bg-harlow-black/5 hover:border-harlow-black/20 transition-all',
+              'h-12 w-12 rounded-full border-white/20 bg-[#1a3040] shadow-md',
+              'hover:bg-[#27e9b5]/20 hover:border-[#27e9b5]/40 transition-all',
               'disabled:opacity-40 disabled:cursor-not-allowed'
             )}
             aria-label="Next testimonial"
           >
-            <ChevronRight className="h-6 w-6 text-harlow-black" />
+            <ChevronRight className="h-6 w-6 text-[#F5F5F5]" />
           </Button>
         </div>
 
@@ -196,13 +196,13 @@ export function Testimonials() {
             onClick={goToPrev}
             disabled={!canGoPrev}
             className={cn(
-              'h-12 w-12 rounded-full border-harlow-black/10 bg-white',
-              'hover:bg-harlow-black/5 hover:border-harlow-black/20 transition-all',
+              'h-12 w-12 rounded-full border-white/20 bg-[#1a3040]',
+              'hover:bg-[#27e9b5]/20 hover:border-[#27e9b5]/40 transition-all',
               'disabled:opacity-40 disabled:cursor-not-allowed'
             )}
             aria-label="Previous testimonial"
           >
-            <ChevronLeft className="h-6 w-6 text-harlow-black" />
+            <ChevronLeft className="h-6 w-6 text-[#F5F5F5]" />
           </Button>
           <Button
             variant="outline"
@@ -210,13 +210,13 @@ export function Testimonials() {
             onClick={goToNext}
             disabled={!canGoNext}
             className={cn(
-              'h-12 w-12 rounded-full border-harlow-black/10 bg-white',
-              'hover:bg-harlow-black/5 hover:border-harlow-black/20 transition-all',
+              'h-12 w-12 rounded-full border-white/20 bg-[#1a3040]',
+              'hover:bg-[#27e9b5]/20 hover:border-[#27e9b5]/40 transition-all',
               'disabled:opacity-40 disabled:cursor-not-allowed'
             )}
             aria-label="Next testimonial"
           >
-            <ChevronRight className="h-6 w-6 text-harlow-black" />
+            <ChevronRight className="h-6 w-6 text-[#F5F5F5]" />
           </Button>
         </div>
 
@@ -229,8 +229,8 @@ export function Testimonials() {
               className={cn(
                 'w-2 h-2 rounded-full transition-all duration-300',
                 index === currentIndex
-                  ? 'w-6 bg-harlow-black'
-                  : 'bg-harlow-black/20 hover:bg-harlow-black/40'
+                  ? 'w-6 bg-[#27e9b5]'
+                  : 'bg-[#F5F5F5]/20 hover:bg-[#27e9b5]/40'
               )}
               aria-label={`Go to testimonial ${index + 1}`}
             />

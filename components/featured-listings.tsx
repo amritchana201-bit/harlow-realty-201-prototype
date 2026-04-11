@@ -56,7 +56,7 @@ export function FeaturedListings() {
   ]
 
   return (
-    <SectionWrapper id="properties" bgColor="cream">
+    <SectionWrapper id="properties" bgColor="navy">
       <motion.div
         initial={{ opacity: 0, y: 32 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -64,8 +64,8 @@ export function FeaturedListings() {
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         className="text-center mb-10 md:mb-14"
       >
-        <h2 className="text-3xl md:text-4xl font-semibold text-harlow-black">
-          Featured Properties
+        <h2 className="text-3xl md:text-4xl font-semibold text-[#F5F5F5]">
+          Featured <span className="text-[#27e9b5]">Properties</span>
         </h2>
       </motion.div>
 

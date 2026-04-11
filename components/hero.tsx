@@ -41,7 +41,7 @@ export function Hero() {
             Find the place you{' '}
             <br className="hidden sm:block" />
             want to call{' '}
-            <span className="text-harlow-primary">Home</span>
+            <span className="text-[#27e9b5]">Home</span>
           </motion.h1>
         </div>
       </div>

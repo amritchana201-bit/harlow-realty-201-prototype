@@ -71,15 +71,15 @@ function StatItem({
         ease: [0.22, 1, 0.36, 1],
         delay: index * 0.1,
       }}
-      className="bg-[#043222] rounded-2xl p-6 md:p-8 text-center shadow-lg"
+      className="bg-[#1a3040] rounded-2xl p-6 md:p-8 text-center shadow-lg border border-white/5"
     >
       <div className="text-4xl md:text-5xl font-semibold mb-2">
-        <span className="text-[#F6E9D9]">
+        <span className="text-[#27e9b5]">
           {shouldAnimate ? count : 0}
           {suffix}
         </span>
       </div>
-      <p className="text-[#F6E9D9] text-base font-medium">{label}</p>
+      <p className="text-[#F5F5F5] text-base font-medium">{label}</p>
     </motion.div>
   )
 }
@@ -89,7 +89,7 @@ export function Stats() {
   const isInView = useInView(ref, { once: true, amount: 0.2 })
 
   return (
-    <SectionWrapper ref={ref} bgColor="evergreen">
+    <SectionWrapper ref={ref} bgColor="navyLight">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {stats.map((stat, index) => (
           <StatItem
