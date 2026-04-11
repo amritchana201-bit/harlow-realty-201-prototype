@@ -36,14 +36,15 @@ export function Navbar() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 2 }}
         className={cn(
-          'fixed top-6 left-6 right-6 z-50 transition-all duration-300',
-          'backdrop-blur-xl border border-white/25 rounded-3xl shadow-xl',
+          'fixed top-4 left-4 right-4 md:top-6 md:left-6 md:right-6 z-50 transition-all duration-300',
+          'backdrop-blur-xl border border-white/30 rounded-2xl md:rounded-3xl',
+          'shadow-[0_8px_32px_rgba(0,0,0,0.08)]',
           isScrolled
-            ? 'bg-white/15 backdrop-blur-2xl'
-            : 'bg-white/12 backdrop-blur-xl'
+            ? 'bg-white/25 backdrop-blur-2xl shadow-[0_8px_32px_rgba(0,0,0,0.12)]'
+            : 'bg-white/18 backdrop-blur-xl'
         )}
       >
-        <nav className="flex items-center justify-between px-6 py-4 max-w-7xl mx-auto">
+        <nav className="flex items-center justify-between px-5 py-3.5 md:px-8 md:py-4 max-w-7xl mx-auto">
           <a
             href="#home"
             className="text-xl md:text-2xl font-semibold text-harlow-black tracking-tight"
@@ -81,33 +82,33 @@ export function Navbar() {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <>
-            {/* Backdrop */}
+            {/* Backdrop - refined blur effect */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              className="fixed inset-0 bg-black/20 backdrop-blur-sm z-[55] md:hidden"
+              transition={{ duration: 0.25 }}
+              className="fixed inset-0 bg-harlow-black/15 backdrop-blur-md z-[55] md:hidden"
               onClick={() => setIsMobileMenuOpen(false)}
               aria-hidden="true"
             />
 
-            {/* Menu Panel */}
+            {/* Menu Panel - matching header pill glassmorphism */}
             <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
+              initial={{ opacity: 0, y: -16, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -16, scale: 0.98 }}
               transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-              className="fixed top-24 left-6 right-6 z-[60] md:hidden"
+              className="fixed top-20 left-4 right-4 z-[60] md:hidden"
             >
-              <nav className="backdrop-blur-2xl bg-white/15 border border-white/25 rounded-3xl shadow-2xl p-6">
-                <ul className="flex flex-col gap-4">
+              <nav className="backdrop-blur-2xl bg-white/25 border border-white/30 rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.12)] p-5">
+                <ul className="flex flex-col gap-1">
                   {navLinks.map((link) => (
                     <li key={link.href}>
                       <a
                         href={link.href}
                         onClick={handleLinkClick}
-                        className="block py-3 px-4 text-base font-medium text-harlow-black/80 hover:text-harlow-primary-darker hover:bg-white/10 rounded-xl transition-colors duration-200"
+                        className="block py-3 px-4 text-base font-medium text-harlow-black/85 hover:text-harlow-primary-darker hover:bg-white/20 rounded-xl transition-all duration-200"
                       >
                         {link.label}
                       </a>
