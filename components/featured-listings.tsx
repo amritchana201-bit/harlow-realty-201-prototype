@@ -62,15 +62,11 @@ export function FeaturedListings() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-        className="text-center mb-12 md:mb-16"
+        className="text-center mb-10 md:mb-14"
       >
-        <h2 className="text-3xl md:text-4xl font-semibold text-harlow-black mb-4">
-          Featured Listings
+        <h2 className="text-3xl md:text-4xl font-semibold text-harlow-black">
+          Featured Properties
         </h2>
-        <p className="text-lg text-harlow-black/70 max-w-2xl mx-auto">
-          Explore our handpicked selection of premium properties in Toronto and
-          the Greater Toronto Area.
-        </p>
       </motion.div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">

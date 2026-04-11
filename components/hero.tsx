@@ -7,7 +7,7 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-[100svh] flex items-end justify-start overflow-hidden"
+      className="relative min-h-[100svh] flex items-center md:items-end justify-start overflow-hidden"
     >
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
@@ -19,27 +19,29 @@ export function Hero() {
           className="object-cover"
           sizes="100vw"
         />
-        {/* Refined Overlay - darker at bottom for text contrast, lighter at top */}
+        {/* Dark gradient overlay for text readability - subtle at top, stronger at bottom */}
         <div
           className="absolute inset-0"
           style={{
             background:
-              'linear-gradient(180deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.35) 50%, rgba(255, 255, 255, 0.65) 100%)',
+              'linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.25) 50%, rgba(0, 0, 0, 0.55) 100%)',
           }}
         />
       </div>
 
-      {/* Content */}
-      <div className="relative z-10 w-full px-6 md:px-8 lg:px-12 pb-20 md:pb-28 lg:pb-32">
+      {/* Content - positioned in lower-middle zone on mobile, bottom on desktop */}
+      <div className="relative z-10 w-full px-5 md:px-8 lg:px-12 pt-24 pb-16 md:pb-28 lg:pb-32">
         <div className="max-w-7xl mx-auto">
           <motion.h1
             initial={{ opacity: 0, y: 32 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 2.5 }}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-semibold text-harlow-black leading-[1.1] text-left max-w-4xl text-balance"
+            className="text-[2rem] sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-semibold text-white leading-[1.15] text-left max-w-3xl lg:max-w-4xl"
           >
-            Find the place you want to call{' '}
-            <span className="text-harlow-primary-darker">Home</span>
+            Find the place you{' '}
+            <br className="hidden sm:block" />
+            want to call{' '}
+            <span className="text-harlow-primary">Home</span>
           </motion.h1>
         </div>
       </div>
