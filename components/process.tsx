@@ -143,7 +143,7 @@ export function Process() {
   const progress = useTransform(scrollYProgress, [0, 1], [0, 1])
 
   return (
-    <SectionWrapper id="process" bgColor="navyLight" className="overflow-hidden">
+    <SectionWrapper id="process" bgColor="black" className="overflow-hidden">
       <div ref={sectionRef}>
         {/* Section Header */}
         <motion.div

@@ -107,7 +107,7 @@ export function Testimonials() {
   }, [maxIndex])
 
   return (
-    <SectionWrapper id="testimonials" bgColor="navy">
+    <SectionWrapper id="testimonials" bgColor="black">
       <motion.div
         initial={{ opacity: 0, y: 32 }}
         whileInView={{ opacity: 1, y: 0 }}

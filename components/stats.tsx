@@ -71,15 +71,18 @@ function StatItem({
         ease: [0.22, 1, 0.36, 1],
         delay: index * 0.1,
       }}
-      className="bg-[#1a3040] rounded-2xl p-6 md:p-8 text-center shadow-lg border border-white/5"
+      className="relative p-6 lg:p-5 text-center group"
     >
-      <div className="text-4xl md:text-5xl font-semibold mb-2">
+      {/* Subtle ambient glow behind each stat */}
+      <div className="absolute inset-0 bg-[#27e9b5]/[0.03] blur-[60px] rounded-full group-hover:bg-[#27e9b5]/[0.06] transition-colors duration-700" />
+      
+      <div className="relative text-4xl md:text-5xl lg:text-4xl xl:text-5xl font-semibold mb-2">
         <span className="text-[#27e9b5]">
           {shouldAnimate ? count : 0}
           {suffix}
         </span>
       </div>
-      <p className="text-[#F5F5F5] text-base font-medium">{label}</p>
+      <p className="text-white/90 text-[10px] sm:text-xs md:text-sm lg:text-xs xl:text-sm font-medium uppercase tracking-wider">{label}</p>
     </motion.div>
   )
 }
@@ -89,8 +92,8 @@ export function Stats() {
   const isInView = useInView(ref, { once: true, amount: 0.2 })
 
   return (
-    <SectionWrapper ref={ref} bgColor="navyLight">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+    <SectionWrapper ref={ref} bgColor="black" className="pt-8 md:pt-12 pb-24">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 lg:gap-4">
         {stats.map((stat, index) => (
           <StatItem
             key={stat.label}
