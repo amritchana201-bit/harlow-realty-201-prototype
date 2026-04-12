@@ -130,13 +130,13 @@ export function Testimonials() {
             onClick={goToPrev}
             disabled={!canGoPrev}
             className={cn(
-              'h-12 w-12 rounded-full border-white/20 bg-[#1a3040] shadow-md',
-              'hover:bg-[#27e9b5]/20 hover:border-[#27e9b5]/40 transition-all',
+              'h-12 w-12 rounded-full border-white/20 bg-black/30 backdrop-blur-md shadow-md',
+              'hover:bg-white/10 hover:border-[#27e9b5]/40 transition-all',
               'disabled:opacity-40 disabled:cursor-not-allowed'
             )}
             aria-label="Previous testimonial"
           >
-            <ChevronLeft className="h-6 w-6 text-[#F5F5F5]" />
+            <ChevronLeft className="h-6 w-6 text-[#27e9b5]" />
           </Button>
         </div>
 
@@ -147,13 +147,13 @@ export function Testimonials() {
             onClick={goToNext}
             disabled={!canGoNext}
             className={cn(
-              'h-12 w-12 rounded-full border-white/20 bg-[#1a3040] shadow-md',
-              'hover:bg-[#27e9b5]/20 hover:border-[#27e9b5]/40 transition-all',
+              'h-12 w-12 rounded-full border-white/20 bg-black/30 backdrop-blur-md shadow-md',
+              'hover:bg-white/10 hover:border-[#27e9b5]/40 transition-all',
               'disabled:opacity-40 disabled:cursor-not-allowed'
             )}
             aria-label="Next testimonial"
           >
-            <ChevronRight className="h-6 w-6 text-[#F5F5F5]" />
+            <ChevronRight className="h-6 w-6 text-[#27e9b5]" />
           </Button>
         </div>
 
@@ -166,24 +166,16 @@ export function Testimonials() {
             }}
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
           >
-            {testimonials.map((testimonial, index) => (
-              <motion.div
+            {testimonials.map((testimonial) => (
+              <div
                 key={testimonial.name}
-                initial={{ opacity: 0, y: 32 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{
-                  duration: 0.7,
-                  ease: [0.22, 1, 0.36, 1],
-                  delay: index * 0.1,
-                }}
                 className="flex-shrink-0"
                 style={{
                   width: `calc((100% - ${(visibleCount - 1) * 24}px) / ${visibleCount})`,
                 }}
               >
                 <TestimonialCard testimonial={testimonial} />
-              </motion.div>
+              </div>
             ))}
           </motion.div>
         </div>
@@ -196,13 +188,13 @@ export function Testimonials() {
             onClick={goToPrev}
             disabled={!canGoPrev}
             className={cn(
-              'h-12 w-12 rounded-full border-white/20 bg-[#1a3040]',
-              'hover:bg-[#27e9b5]/20 hover:border-[#27e9b5]/40 transition-all',
+              'h-12 w-12 rounded-full border-white/20 bg-black/30 backdrop-blur-md shadow-md',
+              'hover:bg-white/10 hover:border-[#27e9b5]/40 transition-all',
               'disabled:opacity-40 disabled:cursor-not-allowed'
             )}
             aria-label="Previous testimonial"
           >
-            <ChevronLeft className="h-6 w-6 text-[#F5F5F5]" />
+            <ChevronLeft className="h-6 w-6 text-[#27e9b5]" />
           </Button>
           <Button
             variant="outline"
@@ -210,13 +202,13 @@ export function Testimonials() {
             onClick={goToNext}
             disabled={!canGoNext}
             className={cn(
-              'h-12 w-12 rounded-full border-white/20 bg-[#1a3040]',
-              'hover:bg-[#27e9b5]/20 hover:border-[#27e9b5]/40 transition-all',
+              'h-12 w-12 rounded-full border-white/20 bg-black/30 backdrop-blur-md shadow-md',
+              'hover:bg-white/10 hover:border-[#27e9b5]/40 transition-all',
               'disabled:opacity-40 disabled:cursor-not-allowed'
             )}
             aria-label="Next testimonial"
           >
-            <ChevronRight className="h-6 w-6 text-[#F5F5F5]" />
+            <ChevronRight className="h-6 w-6 text-[#27e9b5]" />
           </Button>
         </div>
 

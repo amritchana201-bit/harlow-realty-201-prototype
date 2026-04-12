@@ -11,8 +11,8 @@
   --harlow-primary-dark: #1fd4a4;
   --harlow-primary-darker: #19b88e;
   --harlow-white: #F5F5F5;
-  --harlow-black: #162936;
-  --harlow-navy: #162936;
+  --harlow-black: #030F0F;
+  --harlow-navy: #030F0F;
   --harlow-accent: #27e9b5;
   --harlow-offwhite: #F5F5F5;
 
@@ -109,8 +109,7 @@
   }
   body {
     @apply antialiased;
-    background: linear-gradient(180deg, #162936 0%, #1a3040 50%, #162936 100%);
-    background-attachment: fixed;
+    background: #030F0F;
     min-height: 100vh;
     color: #F5F5F5;
   }

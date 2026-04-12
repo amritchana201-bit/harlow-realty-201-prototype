@@ -86,7 +86,7 @@ export function Navbar() {
               className="absolute inset-0 z-[-1] backdrop-blur-md border border-white/10 rounded-2xl md:rounded-3xl bg-black/30 shadow-[0_4px_24px_rgba(0,0,0,0.2)] pointer-events-none"
             />
             <Link
-              href="/"
+              href="#home"
               className="text-xl md:text-2xl font-semibold text-[#F5F5F5] tracking-tight whitespace-nowrap"
             >
               <span className="text-[#F5F5F5]">Harlow</span>{' '}

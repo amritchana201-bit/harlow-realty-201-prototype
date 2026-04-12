@@ -103,7 +103,7 @@ export function Contact() {
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
           onSubmit={handleSubmit}
-          className="bg-[#1a3040] backdrop-blur-sm rounded-2xl shadow-lg p-6 md:p-10 border border-white/10"
+          className="bg-black/30 backdrop-blur-md rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.3),0_0_20px_rgba(39,233,181,0.15)] p-6 md:p-10 border border-[#27e9b5]/50"
         >
           {isSuccess ? (
             <motion.div
@@ -154,7 +154,7 @@ export function Contact() {
                     onChange={handleChange}
                     placeholder="Your name"
                     className={cn(
-                      'h-12 rounded-xl bg-[#162936] border-white/20 text-[#F5F5F5] placeholder:text-[#F5F5F5]/40 focus:border-[#27e9b5] focus:ring-[#27e9b5]/20',
+                      'h-12 rounded-xl bg-black/40 border-[#27e9b5]/40 shadow-[0_0_10px_rgba(39,233,181,0.08)] text-[#F5F5F5] placeholder:text-[#F5F5F5]/40 focus:border-[#27e9b5] focus:ring-[#27e9b5]/20',
                       errors.name && 'border-red-500 focus:border-red-500'
                     )}
                   />
@@ -178,7 +178,7 @@ export function Contact() {
                     onChange={handleChange}
                     placeholder="your@email.com"
                     className={cn(
-                      'h-12 rounded-xl bg-[#162936] border-white/20 text-[#F5F5F5] placeholder:text-[#F5F5F5]/40 focus:border-[#27e9b5] focus:ring-[#27e9b5]/20',
+                      'h-12 rounded-xl bg-black/40 border-[#27e9b5]/40 shadow-[0_0_10px_rgba(39,233,181,0.08)] text-[#F5F5F5] placeholder:text-[#F5F5F5]/40 focus:border-[#27e9b5] focus:ring-[#27e9b5]/20',
                       errors.email && 'border-red-500 focus:border-red-500'
                     )}
                   />
@@ -199,7 +199,7 @@ export function Contact() {
                   value={formData.phone}
                   onChange={handleChange}
                   placeholder="(416) 555-0000"
-                  className="h-12 rounded-xl bg-[#162936] border-white/20 text-[#F5F5F5] placeholder:text-[#F5F5F5]/40 focus:border-[#27e9b5] focus:ring-[#27e9b5]/20"
+                  className="h-12 rounded-xl bg-black/40 border-[#27e9b5]/40 shadow-[0_0_10px_rgba(39,233,181,0.08)] text-[#F5F5F5] placeholder:text-[#F5F5F5]/40 focus:border-[#27e9b5] focus:ring-[#27e9b5]/20"
                 />
               </div>
 
@@ -221,7 +221,7 @@ export function Contact() {
                   placeholder="Tell us about your real estate needs..."
                   rows={5}
                   className={cn(
-                    'rounded-xl bg-[#162936] border-white/20 text-[#F5F5F5] placeholder:text-[#F5F5F5]/40 focus:border-[#27e9b5] focus:ring-[#27e9b5]/20 resize-none',
+                    'rounded-xl bg-black/40 border-[#27e9b5]/40 shadow-[0_0_10px_rgba(39,233,181,0.08)] text-[#F5F5F5] placeholder:text-[#F5F5F5]/40 focus:border-[#27e9b5] focus:ring-[#27e9b5]/20 resize-none',
                     errors.message && 'border-red-500 focus:border-red-500'
                   )}
                 />

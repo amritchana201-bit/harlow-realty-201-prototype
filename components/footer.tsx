@@ -12,16 +12,15 @@ export function Footer() {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="bg-black text-[#F5F5F5]">
+    <footer className="bg-[#030F0F] text-[#F5F5F5]">
         <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12 py-16 md:py-20">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
-            {/* Brand */}
-            <div className="lg:col-span-1">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-12 gap-x-8">
+            <div className="col-span-2 lg:col-span-1">
               <h3 className="text-2xl font-semibold mb-4">
                 <span className="text-[#F5F5F5]">Harlow</span>{' '}
                 <span className="text-[#27e9b5]">Realty</span>
               </h3>
-              <p className="text-[#F5F5F5]/80 leading-relaxed">
+              <p className="text-[#F5F5F5]/80 leading-relaxed max-w-md">
                 Premium real estate services in Toronto and the Greater Toronto
                 Area. Your trusted partner in finding the perfect home.
               </p>
@@ -78,7 +77,7 @@ export function Footer() {
             </div>
 
             {/* Hours */}
-            <div>
+            <div className="col-span-2 lg:col-span-1">
               <h4 className="text-lg font-semibold mb-4">Office Hours</h4>
               <ul className="space-y-2 text-white/80">
                 <li className="flex justify-between">

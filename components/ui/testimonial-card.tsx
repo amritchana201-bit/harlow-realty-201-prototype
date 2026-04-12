@@ -54,8 +54,8 @@ export function TestimonialCard({
   return (
     <article
       className={cn(
-        'bg-[#1a3040] rounded-2xl shadow-md p-6 md:p-8 h-full flex flex-col',
-        'border border-white/10',
+        'bg-black/30 backdrop-blur-md rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.3),0_0_15px_rgba(39,233,181,0.1)] p-6 md:p-8 h-full flex flex-col',
+        'border border-[#27e9b5]/30',
         className
       )}
     >

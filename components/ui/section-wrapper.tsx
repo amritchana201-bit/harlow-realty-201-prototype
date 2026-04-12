@@ -27,9 +27,9 @@ export function SectionWrapper<T extends ElementType = 'section'>({
   const Component = as || 'section'
 
   const bgColorClass = {
-    navy: 'bg-[#162936]',
-    navyLight: 'bg-[#1a3040]',
-    black: 'bg-black',
+    navy: 'bg-[#030F0F]',
+    navyLight: 'bg-[#030F0F]',
+    black: 'bg-[#030F0F]',
     white: 'bg-white',
     none: '',
   }[bgColor]
@@ -37,7 +37,7 @@ export function SectionWrapper<T extends ElementType = 'section'>({
   return (
     <Component
       id={id}
-      className={cn('py-14 md:py-28', bgColorClass, className)}
+      className={cn('py-14 md:py-28 border-b border-[#27e9b5]/10', bgColorClass, className)}
       {...props}
     >
       <div
