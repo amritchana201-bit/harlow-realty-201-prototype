@@ -4,9 +4,10 @@ import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import Link from 'next/link'
 
 const navLinks = [
-  { href: '#home', label: 'Home' },
+  { href: '/', label: 'Home' },
   { href: '#properties', label: 'Properties' },
   { href: '#agents', label: 'Agents' },
   { href: '#testimonials', label: 'Testimonials' },
@@ -84,13 +85,13 @@ export function Navbar() {
               transition={{ duration: 0.3, ease: 'easeInOut' }}
               className="absolute inset-0 z-[-1] backdrop-blur-md border border-white/10 rounded-2xl md:rounded-3xl bg-black/30 shadow-[0_4px_24px_rgba(0,0,0,0.2)] pointer-events-none"
             />
-            <a
-              href="#home"
+            <Link
+              href="/"
               className="text-xl md:text-2xl font-semibold text-[#F5F5F5] tracking-tight whitespace-nowrap"
             >
               <span className="text-[#F5F5F5]">Harlow</span>{' '}
               <span className="text-[#27e9b5]">Realty</span>
-            </a>
+            </Link>
           </motion.div>
 
           {/* Navigation Pill Wrapper */}

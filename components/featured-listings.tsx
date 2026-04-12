@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import { SectionWrapper } from '@/components/ui/section-wrapper'
 import { ListingCard } from '@/components/ui/listing-card'
 import { cn } from '@/lib/utils'
+import Link from 'next/link'
 
 const listings = [
   {
@@ -111,11 +112,14 @@ export function FeaturedListings() {
           ))}
         </div>
 
-        {/* Universal "Show more" Button */}
+        {/* Universal "Show more" Link */}
         <div className="flex justify-center mt-12 md:mt-16">
-          <button className="px-10 py-3.5 rounded-full bg-[#27e9b5] text-black font-semibold hover:bg-[#27e9b5]/90 transition-all duration-300 text-sm tracking-wide shadow-[0_8px_32px_rgba(39,233,181,0.2)]">
+          <Link 
+            href="/listings"
+            className="px-10 py-3.5 rounded-full bg-[#27e9b5] text-black font-semibold hover:bg-[#27e9b5]/90 transition-all duration-300 text-sm tracking-wide shadow-[0_8px_32px_rgba(39,233,181,0.2)] inline-block"
+          >
             Show more
-          </button>
+          </Link>
         </div>
       </motion.div>
     </SectionWrapper>

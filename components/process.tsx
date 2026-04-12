@@ -1,7 +1,7 @@
 'use client'
 
-import { useRef } from 'react'
-import { motion, useScroll, useTransform, useInView } from 'framer-motion'
+import { useRef, useState, useEffect, forwardRef } from 'react'
+import { motion, useScroll, useTransform, useMotionValueEvent, useInView } from 'framer-motion'
 import { 
   MessageSquare, 
   Search, 
@@ -13,213 +13,340 @@ import {
 import { SectionWrapper } from '@/components/ui/section-wrapper'
 import { cn } from '@/lib/utils'
 
-const processSteps = [
-  {
-    icon: MessageSquare,
-    title: 'Private Consultation',
-    description: 'Understand your goals and what you want in your next home.',
-  },
+const desktopSteps = [
   {
     icon: Search,
-    title: 'Tailored Search Strategy',
-    description: 'Build a focused plan around budget, location, and lifestyle.',
+    title: 'Discover',
+    description: 'We learn what you want.',
   },
   {
     icon: Home,
-    title: 'Exclusive Property Matches',
-    description: 'Receive a curated selection of homes that fit your criteria.',
+    title: 'Match',
+    description: 'We find homes that fit.',
   },
   {
     icon: Eye,
-    title: 'Guided Viewings',
-    description: 'Tour the right properties with expert guidance and clarity.',
-  },
-  {
-    icon: FileText,
-    title: 'Negotiation & Offer Management',
-    description: 'Handle offers strategically to secure the best possible outcome.',
+    title: 'Tour',
+    description: 'We arrange guided viewings.',
   },
   {
     icon: Key,
-    title: 'Closing Coordination',
-    description: 'Manage the final steps smoothly from paperwork to handover.',
+    title: 'Close',
+    description: 'We help you secure it.',
   },
 ]
 
-function TimelineStep({ 
-  step, 
-  index, 
-  progress,
-  isLast,
-}: { 
-  step: typeof processSteps[0]
+const mobileSteps = [
+  {
+    icon: Search,
+    title: 'Discover',
+    description: 'We learn what you want.',
+  },
+  {
+    icon: Home,
+    title: 'Match',
+    description: 'We find homes that fit.',
+  },
+  {
+    icon: Eye,
+    title: 'Tour',
+    description: 'We arrange and guide viewings.',
+  },
+  {
+    icon: Key,
+    title: 'Close',
+    description: 'We help you secure it.',
+  },
+]
+
+type IconPosition = {
+  x: number
+  y: number
+  radius: number
+}
+
+const TimelineStep = forwardRef<HTMLDivElement, { 
+  step: typeof desktopSteps[0]
   index: number
-  progress: number
-  isLast: boolean
-}) {
+  isActive: boolean
+}>(({ step, index, isActive }, ref) => {
   const Icon = step.icon
-  const stepProgress = Math.max(0, Math.min(1, (progress * processSteps.length) - index))
-  const isActive = stepProgress > 0
-  const isComplete = stepProgress >= 1
+  const isEven = index % 2 === 0
 
   return (
-    <div className="flex flex-col lg:flex-row lg:items-start gap-4 lg:gap-0 relative">
-      {/* Icon container */}
-      <motion.div
-        initial={{ scale: 0.8, opacity: 0 }}
-        whileInView={{ scale: 1, opacity: 1 }}
-        viewport={{ once: true, amount: 0.5 }}
-        transition={{ duration: 0.5, delay: index * 0.1 }}
-        className="relative z-10 flex-shrink-0"
-      >
-        <div
+    <div className="grid grid-cols-2 gap-4 items-center py-8">
+      {/* Icon Side */}
+      <div className={cn(
+        "flex px-4",
+        isEven ? "order-1 justify-end" : "order-2 justify-start"
+      )}>
+        <div 
+          ref={ref}
           className={cn(
-            'w-14 h-14 md:w-16 md:h-16 rounded-2xl flex items-center justify-center transition-all duration-500',
+            "w-14 h-14 rounded-full flex items-center justify-center transition-all duration-700 relative z-10",
             isActive 
-              ? 'bg-[#27e9b5] shadow-lg shadow-[#27e9b5]/20' 
-              : 'bg-[#27e9b5]/15 border border-[#27e9b5]/30'
+              ? "bg-[#27e9b5] shadow-[0_0_30px_rgba(39,233,181,0.35)]" 
+              : "bg-[#27e9b5]/10 border border-[#27e9b5]/20"
           )}
-          style={{
-            transform: isActive ? 'scale(1.05)' : 'scale(1)',
-          }}
         >
           <Icon 
             size={24} 
             className={cn(
-              'transition-colors duration-500',
-              isActive ? 'text-[#162936]' : 'text-[#27e9b5]/70'
-            )} 
+              "transition-colors duration-700",
+              isActive ? "text-[#162936]" : "text-[#27e9b5]/40"
+            )}
           />
         </div>
-      </motion.div>
+      </div>
 
-      {/* Content */}
-      <motion.div
-        initial={{ opacity: 0, y: 16 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.5 }}
-        transition={{ duration: 0.5, delay: index * 0.1 + 0.1 }}
-        className="lg:ml-6 flex-1 pb-12 lg:pb-0"
-      >
+      {/* Text Side */}
+      <div className={cn(
+        "flex flex-col px-4",
+        isEven ? "order-2 text-left" : "order-1 text-right"
+      )}>
         <h3 className={cn(
-          'text-lg md:text-xl font-semibold mb-2 transition-colors duration-500',
-          isActive ? 'text-[#F5F5F5]' : 'text-[#F5F5F5]/70'
+          "text-lg font-semibold mb-1 transition-colors duration-700",
+          isActive ? "text-[#F5F5F5]" : "text-[#F5F5F5]/30"
         )}>
           {step.title}
         </h3>
         <p className={cn(
-          'text-sm md:text-base leading-relaxed transition-colors duration-500',
-          isActive ? 'text-[#F5F5F5]/85' : 'text-[#F5F5F5]/50'
+          "text-sm leading-relaxed transition-colors duration-700 max-w-[200px]",
+          isActive ? "text-[#F5F5F5]/70" : "text-[#F5F5F5]/20"
         )}>
           {step.description}
         </p>
-      </motion.div>
-
-      {/* Vertical connector line (mobile/tablet) */}
-      {!isLast && (
-        <div className="absolute left-7 md:left-8 top-16 md:top-[4.5rem] w-0.5 h-[calc(100%-4rem)] lg:hidden">
-          <div className="w-full h-full bg-[#27e9b5]/20 rounded-full overflow-hidden">
-            <motion.div 
-              className="w-full bg-[#27e9b5]/60 rounded-full"
-              style={{ height: `${Math.min(100, stepProgress * 100)}%` }}
-            />
-          </div>
-        </div>
-      )}
+      </div>
     </div>
   )
-}
+})
+
+TimelineStep.displayName = 'TimelineStep'
 
 export function Process() {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const sectionRef = useRef<HTMLDivElement>(null)
-  const isInView = useInView(sectionRef, { once: false, amount: 0.2 })
-
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ['start 0.8', 'end 0.5'],
+  const mobileContainerRef = useRef<HTMLDivElement>(null)
+  const desktopContainerRef = useRef<HTMLDivElement>(null)
+  
+  const mobileIconRefs = useRef<(HTMLDivElement | null)[]>([])
+  const desktopIconRefs = useRef<(HTMLDivElement | null)[]>([])
+  
+  const [mobilePositions, setMobilePositions] = useState<IconPosition[]>([])
+  const [desktopPositions, setDesktopPositions] = useState<IconPosition[]>([])
+  
+  const [activeIndex, setActiveIndex] = useState(0)
+  
+  const isDesktopInView = useInView(desktopContainerRef, { 
+    once: true, 
+    amount: 0.5 
   })
 
-  const progress = useTransform(scrollYProgress, [0, 1], [0, 1])
+  const { scrollYProgress } = useScroll({
+    target: mobileContainerRef,
+    offset: ['start 0.8', 'end 0.2'],
+  })
+
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    const rawIndex = Math.floor(latest * mobileSteps.length)
+    const index = Math.max(0, Math.min(mobileSteps.length - 1, rawIndex))
+    if (index !== activeIndex) {
+      setActiveIndex(index)
+    }
+  })
+
+  const updatePositions = () => {
+    // Measure Mobile
+    if (mobileContainerRef.current) {
+      const containerRect = mobileContainerRef.current.getBoundingClientRect()
+      const pos = mobileIconRefs.current.map((iconEl) => {
+        if (!iconEl) return null
+        const rect = iconEl.getBoundingClientRect()
+        return {
+          x: rect.left - containerRect.left + rect.width / 2,
+          y: rect.top - containerRect.top + rect.height / 2,
+          radius: rect.width / 2
+        }
+      }).filter((p): p is IconPosition => p !== null)
+      setMobilePositions(pos)
+    }
+
+    // Measure Desktop
+    if (desktopContainerRef.current) {
+      const containerRect = desktopContainerRef.current.getBoundingClientRect()
+      const pos = desktopIconRefs.current.map((iconEl) => {
+        if (!iconEl) return null
+        const rect = iconEl.getBoundingClientRect()
+        return {
+          x: rect.left - containerRect.left + rect.width / 2,
+          y: rect.top - containerRect.top + rect.height / 2,
+          radius: rect.width / 2
+        }
+      }).filter((p): p is IconPosition => p !== null)
+      setDesktopPositions(pos)
+    }
+  }
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      updatePositions()
+    }, 50)
+    
+    const observer = new ResizeObserver(updatePositions)
+    if (mobileContainerRef.current) observer.observe(mobileContainerRef.current)
+    if (desktopContainerRef.current) observer.observe(desktopContainerRef.current)
+    
+    window.addEventListener('resize', updatePositions)
+    return () => {
+      clearTimeout(timer)
+      observer.disconnect()
+      window.removeEventListener('resize', updatePositions)
+    }
+  }, [])
 
   return (
     <SectionWrapper id="process" bgColor="black" className="overflow-hidden">
-      <div ref={sectionRef}>
+      <div>
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 32 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="text-center mb-12 md:mb-16 lg:mb-20"
+          className="text-center mb-12 md:mb-16"
         >
           <h2 className="text-3xl md:text-4xl font-semibold text-[#F5F5F5] mb-4">
             Your Buyer <span className="text-[#27e9b5]">Journey</span>
           </h2>
-          <p className="text-lg text-[#F5F5F5]/70 max-w-2xl mx-auto">
+          <p className="text-lg text-[#F5F5F5]/70 max-w-2xl mx-auto px-4">
             From first conversation to keys in hand, here is how we guide you home.
           </p>
         </motion.div>
 
-        {/* Timeline Container - relative position required for scroll tracking */}
-        <div ref={containerRef} className="relative" style={{ position: 'relative' }}>
-          {/* Mobile/Tablet: Vertical Timeline */}
-          <div className="lg:hidden space-y-0">
-            {processSteps.map((step, index) => (
-              <motion.div key={step.title}>
+        {/* Timeline Container */}
+        <div className="relative">
+          {/* Mobile/Tablet: Zig-Zag with Measured Connector */}
+          <div ref={mobileContainerRef} className="md:hidden relative">
+            {mobilePositions.length > 0 && (
+              <div className="absolute inset-0 pointer-events-none z-0">
+                <svg className="w-full h-full overflow-visible">
+                  {mobilePositions.map((pos, i) => {
+                    if (i === mobilePositions.length - 1) return null
+                    const nextPos = mobilePositions[i + 1]
+                    const startX = pos.x
+                    const startY = pos.y + pos.radius
+                    const endX = nextPos.x
+                    const endY = nextPos.y - nextPos.radius
+                    const midY = (startY + endY) / 2
+                    return (
+                      <path
+                        key={`path-m-${i}`}
+                        d={`M ${startX},${startY} C ${startX},${midY} ${endX},${midY} ${endX},${endY}`}
+                        fill="none"
+                        stroke="rgba(39, 233, 181, 0.22)"
+                        strokeWidth="1.2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    )
+                  })}
+                </svg>
+              </div>
+            )}
+
+            <div className="relative z-10">
+              {mobileSteps.map((step, index) => (
                 <TimelineStep
+                  key={step.title}
+                  ref={(el) => (mobileIconRefs.current[index] = el)}
                   step={step}
                   index={index}
-                  progress={isInView ? progress.get() : 0}
-                  isLast={index === processSteps.length - 1}
+                  isActive={index === activeIndex}
                 />
-              </motion.div>
-            ))}
+              ))}
+            </div>
           </div>
 
-          {/* Desktop: Horizontal Timeline */}
-          <div className="hidden lg:block">
-            {/* Horizontal progress line */}
-            <div className="relative mb-8">
-              <div className="absolute top-8 left-8 right-8 h-0.5 bg-[#27e9b5]/20 rounded-full">
-                <motion.div 
-                  className="h-full bg-[#27e9b5]/60 rounded-full origin-left"
-                  style={{ scaleX: progress }}
-                />
-              </div>
-            </div>
+          {/* Desktop: Horizontal Timeline (Restored) */}
+          <div className="hidden md:block">
+            <div ref={desktopContainerRef} className="relative flex flex-row items-start justify-between gap-0 px-8">
+              
+              {/* Connector SVG — drawn between icons */}
+              {desktopPositions.length > 0 && (
+                <div className="absolute inset-0 pointer-events-none z-0">
+                  <svg className="w-full h-full overflow-visible">
+                    {desktopPositions.map((pos, i) => {
+                      if (i === desktopPositions.length - 1) return null
+                      const nextPos = desktopPositions[i + 1]
+                      const startX = pos.x + pos.radius
+                      const endX = nextPos.x - nextPos.radius
+                      const midX = (startX + endX) / 2
+                      const segmentDuration = 0.8
+                      const baseDelay = 0.4
 
-            {/* Steps grid */}
-            <div className="grid grid-cols-6 gap-6">
-              {processSteps.map((step, index) => {
+                      return (
+                        <motion.path
+                          key={`path-d-${i}`}
+                          d={`M ${startX},${pos.y} C ${midX},${pos.y} ${midX},${nextPos.y} ${endX},${nextPos.y}`}
+                          fill="none"
+                          stroke="rgba(39, 233, 181, 0.25)"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                          initial={{ pathLength: 0 }}
+                          animate={{ pathLength: isDesktopInView ? 1 : 0 }}
+                          transition={{ 
+                            duration: segmentDuration, 
+                            delay: baseDelay + i * segmentDuration,
+                            ease: "easeInOut" 
+                          }}
+                        />
+                      )
+                    })}
+                  </svg>
+                </div>
+              )}
+
+              {desktopSteps.map((step, index) => {
                 const Icon = step.icon
                 return (
                   <motion.div
                     key={step.title}
                     initial={{ opacity: 0, y: 24 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.3 }}
-                    transition={{ duration: 0.5, delay: index * 0.08 }}
-                    className="text-center"
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    className="flex flex-col items-center text-center flex-1 px-4"
                   >
-                    {/* Icon */}
+
+                    {/* Icon circle */}
                     <motion.div
-                      className="mx-auto mb-4 w-16 h-16 rounded-2xl flex items-center justify-center bg-[#27e9b5]/15 border border-[#27e9b5]/30"
-                      whileInView={{
-                        backgroundColor: 'rgba(39, 233, 181, 1)',
-                        borderColor: 'rgba(39, 233, 181, 0)',
+                      ref={(el) => (desktopIconRefs.current[index] = el)}
+                      initial={{ backgroundColor: "rgba(39, 233, 181, 0.05)", borderColor: "rgba(39, 233, 181, 0.15)" }}
+                      animate={isDesktopInView ? { 
+                        backgroundColor: "rgba(39, 233, 181, 0.22)",
+                        borderColor: "rgba(39, 233, 181, 0.6)",
+                        boxShadow: "0 0 15px rgba(39, 233, 181, 0.4), 0 0 40px rgba(39, 233, 181, 0.2)"
+                      } : {}}
+                      transition={{ 
+                        duration: 0.8, 
+                        delay: 0.4 + index * 0.8 // Mathematically synced with line arrival
                       }}
-                      viewport={{ once: true, amount: 0.8 }}
-                      transition={{ duration: 0.4, delay: index * 0.1 }}
+                      className="w-16 h-16 rounded-full flex items-center justify-center border mb-5 relative z-10"
                     >
-                      <Icon size={24} className="text-[#162936]" />
+                      <motion.div
+                        initial={{ opacity: 0.25 }}
+                        animate={isDesktopInView ? { opacity: 1 } : { opacity: 0.25 }}
+                        transition={{ duration: 0.8, delay: 0.4 + index * 0.8 }}
+                      >
+                        <Icon size={22} className="text-[#27e9b5]" />
+                      </motion.div>
                     </motion.div>
 
-                    {/* Content */}
-                    <h3 className="text-base font-semibold text-[#F5F5F5] mb-2 leading-tight">
+                    {/* Title */}
+                    <h3 className="text-sm font-semibold text-[#F5F5F5] mb-2 tracking-wide uppercase leading-tight">
                       {step.title}
                     </h3>
-                    <p className="text-sm text-[#F5F5F5]/70 leading-relaxed">
+
+                    {/* Description */}
+                    <p className="text-xs text-[#F5F5F5]/50 leading-relaxed max-w-[140px]">
                       {step.description}
                     </p>
                   </motion.div>

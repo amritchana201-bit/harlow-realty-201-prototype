@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import { Bed, Bath, Square } from 'lucide-react'
+import { Bed, Bath } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 type Listing = {
@@ -52,30 +52,26 @@ export function ListingCard({ listing, index, className }: ListingCardProps) {
 
         {/* Bottom glass overlay with property info */}
         <div className="absolute inset-x-0 bottom-0 p-4 sm:p-5 md:p-6">
-          <div className="backdrop-blur-md bg-black/30 border border-white/10 rounded-xl md:rounded-2xl p-4 md:p-5 shadow-[0_8px_32px_rgba(0,0,0,0.3)]">
+          <div className="backdrop-blur-md bg-black/30 border border-white/10 rounded-xl md:rounded-2xl py-3 px-4 md:py-4 md:px-5 shadow-[0_8px_32px_rgba(0,0,0,0.3)]">
             {/* Price and Title */}
-            <div className="mb-3">
-              <p className="text-xl md:text-2xl font-semibold text-white mb-1">
+            <div className="mb-2">
+              <p className="text-xl md:text-2xl font-medium text-white mb-0.5">
                 {listing.price}
               </p>
-              <h3 className="text-sm md:text-base font-medium text-white/90 line-clamp-1">
+              <h3 className="text-sm md:text-base font-normal text-white/90 line-clamp-1">
                 {listing.address}
               </h3>
             </div>
 
             {/* Property specs */}
-            <div className="flex items-center gap-4 md:gap-5 text-xs md:text-sm text-white/80">
-              <span className="flex items-center gap-1.5">
-                <Bed size={14} className="text-white/70" />
+            <div className="flex items-center gap-4 md:gap-5 text-xs md:text-sm text-white/70">
+              <span className="flex items-center gap-1.5 font-normal">
+                <Bed size={14} className="text-white/60" />
                 {listing.beds} Beds
               </span>
-              <span className="flex items-center gap-1.5">
-                <Bath size={14} className="text-white/70" />
+              <span className="flex items-center gap-1.5 font-normal">
+                <Bath size={14} className="text-white/60" />
                 {listing.baths} Baths
-              </span>
-              <span className="flex items-center gap-1.5" title="Square Footage">
-                <Square size={14} className="text-white/70" />
-                {listing.sqft} sqft
               </span>
             </div>
           </div>
