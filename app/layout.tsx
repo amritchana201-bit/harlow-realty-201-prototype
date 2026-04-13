@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import { Lexend_Deca } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
+import StructuredData from '@/components/StructuredData'
 import './globals.css'
 
 const lexendDeca = Lexend_Deca({
@@ -11,6 +12,7 @@ const lexendDeca = Lexend_Deca({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://harlowrealty.ca'),
   title: 'Harlow Realty | Premium Real Estate in Toronto & GTA',
   description:
     'Discover your dream home with Harlow Realty. Premium real estate services in Toronto and the Greater Toronto Area. Expert agents, luxury properties, and personalized service.',
@@ -39,12 +41,21 @@ export const metadata: Metadata = {
     siteName: 'Harlow Realty',
     locale: 'en_CA',
     type: 'website',
+    images: [
+      {
+        url: '/opengraph-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Harlow Realty - Premium Real Estate in Toronto',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Harlow Realty | Premium Real Estate in Toronto & GTA',
     description:
       'Discover your dream home with Harlow Realty. Premium real estate services in Toronto and the Greater Toronto Area.',
+    images: ['/twitter-image.png'],
   },
   icons: {
     icon: [
@@ -71,6 +82,7 @@ export const viewport: Viewport = {
   initialScale: 1,
 }
 
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -78,6 +90,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={lexendDeca.variable}>
+      <head>
+        <StructuredData />
+      </head>
       <body className="font-sans antialiased overflow-x-hidden">
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
