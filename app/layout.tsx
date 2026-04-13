@@ -12,7 +12,7 @@ const lexendDeca = Lexend_Deca({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://harlowrealty.ca'),
+  metadataBase: new URL('https://harlow-realty-201-prototype.vercel.app'),
   title: 'Harlow Realty | Premium Real Estate in Toronto & GTA',
   description:
     'Discover your dream home with Harlow Realty. Premium real estate services in Toronto and the Greater Toronto Area. Expert agents, luxury properties, and personalized service.',
