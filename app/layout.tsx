@@ -49,21 +49,7 @@ export const metadata: Metadata = {
       'Discover your dream home with Harlow Realty. Premium real estate services in Toronto and the Greater Toronto Area.',
   },
   icons: {
-    icon: [
-      {
-        url: '/icon-light-32x32.png',
-        media: '(prefers-color-scheme: light)',
-      },
-      {
-        url: '/icon-dark-32x32.png',
-        media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
-      },
-    ],
-    apple: '/apple-icon.png',
+    icon: '/favicon.png',
   },
 }
 
