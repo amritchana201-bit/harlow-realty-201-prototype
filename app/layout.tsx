@@ -41,21 +41,12 @@ export const metadata: Metadata = {
     siteName: 'Harlow Realty',
     locale: 'en_CA',
     type: 'website',
-    images: [
-      {
-        url: '/opengraph-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Harlow Realty - Premium Real Estate in Toronto',
-      },
-    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Harlow Realty | Premium Real Estate in Toronto & GTA',
     description:
       'Discover your dream home with Harlow Realty. Premium real estate services in Toronto and the Greater Toronto Area.',
-    images: ['/twitter-image.png'],
   },
   icons: {
     icon: [
