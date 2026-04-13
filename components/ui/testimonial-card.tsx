@@ -80,7 +80,7 @@ export function TestimonialCard({
               src={testimonial.image}
               alt={testimonial.name}
               fill
-              className="object-cover"
+              className="w-full h-full object-cover"
               sizes="40px"
             />
           ) : (

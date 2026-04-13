@@ -107,7 +107,7 @@ export function Testimonials() {
   }, [maxIndex])
 
   return (
-    <SectionWrapper id="testimonials" bgColor="black">
+    <SectionWrapper id="testimonials" bgColor="black" className="overflow-hidden">
       <motion.div
         initial={{ opacity: 0, y: 32 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -158,7 +158,7 @@ export function Testimonials() {
         </div>
 
         {/* Cards Container */}
-        <div className="overflow-hidden">
+        <div className="overflow-hidden w-full max-w-full">
           <motion.div
             className="flex gap-6"
             animate={{

@@ -58,7 +58,7 @@ export function AgentCard({ agent, index, className }: AgentCardProps) {
           src={agent.photo}
           alt={`${agent.name}, ${agent.title}`}
           fill
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
         />
       </div>

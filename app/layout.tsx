@@ -78,7 +78,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={lexendDeca.variable}>
-      <body className="font-sans antialiased">
+      <body className="font-sans antialiased overflow-x-hidden">
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>

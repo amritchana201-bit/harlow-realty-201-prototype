@@ -6,7 +6,7 @@ import { SectionWrapper } from '@/components/ui/section-wrapper'
 
 export function AgentCards() {
   return (
-    <SectionWrapper id="agents" bgColor="black" className="pt-16 md:pt-20 pb-12 md:pb-20">
+    <SectionWrapper id="agents" bgColor="black" className="pt-16 md:pt-20 pb-12 md:pb-20 overflow-hidden">
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-center">
         {/* Image Column */}
         <motion.div

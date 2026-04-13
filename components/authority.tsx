@@ -63,7 +63,7 @@ function FeatureCard({ feature, index }: { feature: (typeof features)[0]; index:
           alt={feature.title}
           fill
           className={cn(
-            'object-cover transition-transform duration-700',
+            'w-full h-full object-cover transition-transform duration-700',
             'group-hover:scale-105',
             isInView && 'max-md:scale-105'
           )}

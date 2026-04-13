@@ -84,7 +84,7 @@ const listings = [
 
 export function FeaturedListings() {
   return (
-    <SectionWrapper id="properties" bgColor="black" className="pt-8 md:pt-12">
+    <SectionWrapper id="properties" bgColor="black" className="pt-8 md:pt-12 overflow-hidden">
       <motion.div
         initial={{ opacity: 0, y: 32 }}
         whileInView={{ opacity: 1, y: 0 }}
