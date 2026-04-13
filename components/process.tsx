@@ -158,7 +158,7 @@ export function Process() {
   
   const isDesktopInView = useInView(desktopContainerRef, {
     once: true, 
-    amount: 0.5 
+    amount: 0.2 
   })
 
   const isMobileInView = useInView(mobileContainerRef, { 
@@ -216,7 +216,7 @@ export function Process() {
   // Re-measure after desktop entry animations settle (last step: delay 0.3s + duration 0.5s = 0.8s)
   useEffect(() => {
     if (!isDesktopInView) return
-    const timer = setTimeout(updatePositions, 900)
+    const timer = setTimeout(updatePositions, 100)
     return () => clearTimeout(timer)
   }, [isDesktopInView])
 
@@ -323,41 +323,70 @@ export function Process() {
               
               {/* Connector SVG — drawn between icons */}
               {desktopPositions.length > 0 && (
-                <div className="absolute inset-0 pointer-events-none z-0">
+                <div className="absolute inset-0 pointer-events-none z-1">
                   <svg className="w-full h-full overflow-visible">
-                    <defs>
-                      <filter id="glow-desktop" x="-20%" y="-20%" width="140%" height="140%">
-                        <feGaussianBlur stdDeviation="3" result="blur" />
-                        <feMerge>
-                          <feMergeNode in="blur" />
-                          <feMergeNode in="SourceGraphic" />
-                        </feMerge>
-                      </filter>
-                    </defs>
                     {desktopPositions.map((pos, i) => {
                       if (i === desktopPositions.length - 1) return null
                       const nextPos = desktopPositions[i + 1]
                       const segmentDuration = 0.8
                       const baseDelay = 0
 
+                      // Calculate path length for manual dash-offset if needed, 
+                      // but pathLength variant is usually stable on mount
                       return (
                         <g key={`path-group-d-${i}`}>
-                          {/* Traveling Glowing Path */}
+                          
+                          {/* Glow Stack — 3 layers for a robust, visible glow */}
+                          {/* Layer 1: Outer Wide Glow */}
                           <motion.path
-                            key={`path-d-${i}`}
-                            d={`M ${pos.x + pos.radius},${pos.y} L ${nextPos.x - nextPos.radius},${nextPos.y}`}
+                            d={`M ${pos.x},${pos.y} L ${nextPos.x},${nextPos.y}`}
+                            fill="none"
+                            stroke="#27e9b5"
+                            strokeWidth="6"
+                            strokeLinecap="round"
+                            initial={{ pathLength: 0, opacity: 0 }}
+                            animate={isDesktopInView ? { 
+                              pathLength: 1, 
+                              opacity: 0.15 
+                            } : {}}
+                            transition={{
+                              pathLength: { duration: segmentDuration, delay: baseDelay + i * segmentDuration, ease: "linear" },
+                              opacity: { duration: 0.1, delay: baseDelay + i * segmentDuration }
+                            }}
+                          />
+                          {/* Layer 2: Inner Glow */}
+                          <motion.path
+                            d={`M ${pos.x},${pos.y} L ${nextPos.x},${nextPos.y}`}
+                            fill="none"
+                            stroke="#27e9b5"
+                            strokeWidth="3.5"
+                            strokeLinecap="round"
+                            initial={{ pathLength: 0, opacity: 0 }}
+                            animate={isDesktopInView ? { 
+                              pathLength: 1, 
+                              opacity: 0.4 
+                            } : {}}
+                            transition={{
+                              pathLength: { duration: segmentDuration, delay: baseDelay + i * segmentDuration, ease: "linear" },
+                              opacity: { duration: 0.1, delay: baseDelay + i * segmentDuration }
+                            }}
+                          />
+                          {/* Layer 3: Core Bright Line */}
+                          <motion.path
+                            d={`M ${pos.x},${pos.y} L ${nextPos.x},${nextPos.y}`}
                             fill="none"
                             stroke="#27e9b5"
                             strokeWidth="1.8"
                             strokeLinecap="round"
-                            initial={{ pathLength: 0 }}
-                            animate={{ pathLength: isDesktopInView ? 1 : 0 }}
+                            initial={{ pathLength: 0, opacity: 0 }}
+                            animate={isDesktopInView ? { 
+                              pathLength: 1, 
+                              opacity: 1 
+                            } : {}}
                             transition={{
-                              duration: segmentDuration,
-                              delay: baseDelay + i * segmentDuration,
-                              ease: "linear"
+                              pathLength: { duration: segmentDuration, delay: baseDelay + i * segmentDuration, ease: "linear" },
+                              opacity: { duration: 0.1, delay: baseDelay + i * segmentDuration }
                             }}
-                            filter="url(#glow-desktop)"
                           />
                         </g>
                       )
@@ -386,7 +415,7 @@ export function Process() {
                       animate={isDesktopInView ? {
                         backgroundColor: "#27e9b5",
                         borderColor: "#27e9b5",
-                        boxShadow: "0 0 30px rgba(39, 233, 181, 0.35)"
+                        boxShadow: "0 0 50px rgba(39, 233, 181, 0.5)"
                       } : {}}
                       transition={{
                         duration: 0.25,
