@@ -100,7 +100,7 @@ function StatItem({
 export function Stats() {
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, amount: 0.2 })
-  const isCurrentlyInView = useInView(ref, { once: false, amount: 0.3 })
+  const isCurrentlyInView = useInView(ref, { once: true, amount: 0.3 })
   const [glowActive, setGlowActive] = useState(false)
 
   useEffect(() => {

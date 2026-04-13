@@ -15,6 +15,7 @@ export function Hero() {
           muted
           loop
           playsInline
+          preload="none"
           className="absolute inset-0 w-full h-full object-cover"
         >
           <source src="/7646491-uhd_2160_3840_25fps.mp4" type="video/mp4" />

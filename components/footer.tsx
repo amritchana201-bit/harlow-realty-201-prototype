@@ -81,18 +81,18 @@ export function Footer() {
             {/* Hours */}
             <div className="col-start-2 row-start-2 md:col-start-auto md:row-start-auto md:order-3 lg:order-none flex flex-col items-end md:items-start text-right md:text-left">
               <h4 className="text-lg font-semibold mb-4">Office Hours</h4>
-              <ul className="space-y-2 text-white/80 w-full max-w-[220px] md:max-w-none text-sm md:text-base">
-                <li className="flex justify-between gap-2 sm:gap-4">
-                  <span className="whitespace-nowrap">Mon - Fri:</span>
-                  <span className="whitespace-nowrap">9:00 AM - 6:00 PM</span>
+              <ul className="space-y-2 text-white/80 w-full text-sm md:text-base">
+                <li className="flex flex-col gap-0.5">
+                  <span>Mon - Fri:</span>
+                  <span>9:00 AM - 6:00 PM</span>
                 </li>
-                <li className="flex justify-between gap-2 sm:gap-4">
-                  <span className="whitespace-nowrap">Saturday:</span>
-                  <span className="whitespace-nowrap">10:00 AM - 4:00 PM</span>
+                <li className="flex flex-col gap-0.5">
+                  <span>Saturday:</span>
+                  <span>10:00 AM - 4:00 PM</span>
                 </li>
-                <li className="flex justify-between gap-2 sm:gap-4">
-                  <span className="whitespace-nowrap">Sunday:</span>
-                  <span className="whitespace-nowrap">By Appointment</span>
+                <li className="flex flex-col gap-0.5">
+                  <span>Sunday:</span>
+                  <span>By Appointment</span>
                 </li>
               </ul>
             </div>

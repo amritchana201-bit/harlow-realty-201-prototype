@@ -67,8 +67,18 @@ export function Testimonials() {
     }
 
     updateVisibleCount()
-    window.addEventListener('resize', updateVisibleCount)
-    return () => window.removeEventListener('resize', updateVisibleCount)
+
+    let debounceTimer: ReturnType<typeof setTimeout>
+    const debouncedUpdate = () => {
+      clearTimeout(debounceTimer)
+      debounceTimer = setTimeout(updateVisibleCount, 150)
+    }
+
+    window.addEventListener('resize', debouncedUpdate)
+    return () => {
+      window.removeEventListener('resize', debouncedUpdate)
+      clearTimeout(debounceTimer)
+    }
   }, [])
 
   const maxIndex = Math.max(0, testimonials.length - visibleCount)

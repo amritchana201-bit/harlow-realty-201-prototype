@@ -1,7 +1,7 @@
 'use client'
 
 import { useRef, useState, useEffect, forwardRef } from 'react'
-import { motion, useScroll, useTransform, useMotionValueEvent, useInView } from 'framer-motion'
+import { motion, useInView } from 'framer-motion'
 import { 
   MessageSquare, 
   Search, 
@@ -65,12 +65,11 @@ type IconPosition = {
   radius: number
 }
 
-const TimelineStep = forwardRef<HTMLDivElement, { 
+const TimelineStep = forwardRef<HTMLDivElement, {
   step: typeof desktopSteps[0]
   index: number
-  isActive: boolean
   isMobileInView: boolean
-}>(({ step, index, isActive, isMobileInView }, ref) => {
+}>(({ step, index, isMobileInView }, ref) => {
   const Icon = step.icon
   const isEven = index % 2 === 0
   
@@ -157,9 +156,7 @@ export function Process() {
   const [mobilePositions, setMobilePositions] = useState<IconPosition[]>([])
   const [desktopPositions, setDesktopPositions] = useState<IconPosition[]>([])
   
-  const [activeIndex, setActiveIndex] = useState(0)
-  
-  const isDesktopInView = useInView(desktopContainerRef, { 
+  const isDesktopInView = useInView(desktopContainerRef, {
     once: true, 
     amount: 0.5 
   })
@@ -167,19 +164,6 @@ export function Process() {
   const isMobileInView = useInView(mobileContainerRef, { 
     once: true, 
     amount: 0.2 
-  })
-
-  const { scrollYProgress } = useScroll({
-    target: mobileContainerRef,
-    offset: ['start 0.8', 'end 0.2'],
-  })
-
-  useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    const rawIndex = Math.floor(latest * mobileSteps.length)
-    const index = Math.max(0, Math.min(mobileSteps.length - 1, rawIndex))
-    if (index !== activeIndex) {
-      setActiveIndex(index)
-    }
   })
 
   const updatePositions = () => {
@@ -223,11 +207,9 @@ export function Process() {
     if (mobileContainerRef.current) observer.observe(mobileContainerRef.current)
     if (desktopContainerRef.current) observer.observe(desktopContainerRef.current)
 
-    window.addEventListener('resize', updatePositions)
     return () => {
       clearTimeout(timer)
       observer.disconnect()
-      window.removeEventListener('resize', updatePositions)
     }
   }, [])
 
@@ -264,6 +246,15 @@ export function Process() {
             {mobilePositions.length > 0 && (
               <div className="absolute inset-0 pointer-events-none z-0">
                 <svg className="w-full h-full overflow-visible">
+                  <defs>
+                    <filter id="glow-mobile" x="-20%" y="-20%" width="140%" height="140%">
+                      <feGaussianBlur stdDeviation="3" result="blur" />
+                      <feMerge>
+                        <feMergeNode in="blur" />
+                        <feMergeNode in="SourceGraphic" />
+                      </feMerge>
+                    </filter>
+                  </defs>
                   {mobilePositions.map((pos, i) => {
                     if (i === mobilePositions.length - 1) return null
                     const nextPos = mobilePositions[i + 1]
@@ -272,7 +263,7 @@ export function Process() {
                     const endX = nextPos.x
                     const endY = nextPos.y
                     const midY = (startY + endY) / 2
-                    
+
                     const segmentDuration = 0.8
                     const baseDelay = 0
 
@@ -296,17 +287,15 @@ export function Process() {
                           strokeLinecap="round"
                           strokeLinejoin="round"
                           initial={{ pathLength: 0 }}
-                          animate={{ 
+                          animate={{
                             pathLength: isMobileInView ? 1 : 0
                           }}
-                          transition={{ 
-                            duration: segmentDuration, 
+                          transition={{
+                            duration: segmentDuration,
                             delay: baseDelay + i * segmentDuration,
-                            ease: "linear" 
+                            ease: "linear"
                           }}
-                          style={{
-                            filter: "drop-shadow(0 0 3px rgba(39, 233, 181, 0.6)) drop-shadow(0 0 8px rgba(39, 233, 181, 0.3))"
-                          }}
+                          filter="url(#glow-mobile)"
                         />
                       </g>
                     )
@@ -322,7 +311,6 @@ export function Process() {
                   ref={(el) => { mobileIconRefs.current[index] = el }}
                   step={step}
                   index={index}
-                  isActive={index === activeIndex}
                   isMobileInView={isMobileInView}
                 />
               ))}
@@ -337,6 +325,15 @@ export function Process() {
               {desktopPositions.length > 0 && (
                 <div className="absolute inset-0 pointer-events-none z-0">
                   <svg className="w-full h-full overflow-visible">
+                    <defs>
+                      <filter id="glow-desktop" x="-20%" y="-20%" width="140%" height="140%">
+                        <feGaussianBlur stdDeviation="3" result="blur" />
+                        <feMerge>
+                          <feMergeNode in="blur" />
+                          <feMergeNode in="SourceGraphic" />
+                        </feMerge>
+                      </filter>
+                    </defs>
                     {desktopPositions.map((pos, i) => {
                       if (i === desktopPositions.length - 1) return null
                       const nextPos = desktopPositions[i + 1]
@@ -355,14 +352,12 @@ export function Process() {
                             strokeLinecap="round"
                             initial={{ pathLength: 0 }}
                             animate={{ pathLength: isDesktopInView ? 1 : 0 }}
-                            transition={{ 
-                              duration: segmentDuration, 
+                            transition={{
+                              duration: segmentDuration,
                               delay: baseDelay + i * segmentDuration,
-                              ease: "linear" 
+                              ease: "linear"
                             }}
-                            style={{
-                              filter: "drop-shadow(0 0 3px rgba(39, 233, 181, 0.6)) drop-shadow(0 0 8px rgba(39, 233, 181, 0.3))"
-                            }}
+                            filter="url(#glow-desktop)"
                           />
                         </g>
                       )

@@ -27,7 +27,7 @@ const features = [
 function FeatureCard({ feature, index }: { feature: (typeof features)[0]; index: number }) {
   const ref = useRef<HTMLDivElement>(null)
   // Triggers when 50% of the card is visible; re-triggers on scroll back in
-  const isInView = useInView(ref, { once: false, amount: 0.5 })
+  const isInView = useInView(ref, { once: true, amount: 0.5 })
 
   return (
     <motion.div

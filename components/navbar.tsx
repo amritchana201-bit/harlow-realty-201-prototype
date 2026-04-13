@@ -63,13 +63,13 @@ export function Navbar() {
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 2 }}
-        className="fixed top-3 left-3 right-3 sm:top-4 sm:left-4 sm:right-4 md:top-6 md:left-6 md:right-6 z-50 transition-all duration-300 pointer-events-none"
+        className="fixed top-3 left-3 right-3 sm:top-4 sm:left-4 sm:right-4 md:top-6 md:left-6 md:right-6 z-50 pointer-events-none will-change-transform"
       >
         <motion.nav
           layout
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
           className={cn(
-            'relative flex items-center justify-between mx-auto pointer-events-auto transition-all duration-300',
+            'relative flex items-center justify-between mx-auto pointer-events-auto',
             isMerged
               ? 'max-w-fit md:max-w-4xl gap-4 px-1.5 py-1.5 md:px-2 md:py-2'
               : 'max-w-7xl gap-2 md:gap-4'
@@ -84,10 +84,9 @@ export function Navbar() {
           />
 
           {/* Logo Pill Wrapper */}
-          <motion.div
-            layout
+          <div
             className={cn(
-              'relative transition-all duration-500',
+              'relative transition-[padding] duration-500',
               isMerged
                 ? 'px-4 py-2 sm:px-5 sm:py-2.5 md:px-6 md:py-3'
                 : 'px-5 py-2.5 sm:px-6 sm:py-3 md:px-8 md:py-4'
@@ -107,13 +106,12 @@ export function Navbar() {
               <span className="text-[#F5F5F5]">Harlow</span>{' '}
               <span className="text-[#27e9b5]">Realty</span>
             </button>
-          </motion.div>
+          </div>
 
           {/* Navigation Pill Wrapper */}
-          <motion.div
-            layout
+          <div
             className={cn(
-              'relative transition-all duration-500',
+              'relative transition-[padding] duration-500',
               isMerged
                 ? 'px-2 py-1.5 sm:px-3 sm:py-2 md:px-4 md:py-3'
                 : 'px-2 py-1.5 sm:px-3 sm:py-2 md:px-8 md:py-4'
@@ -150,7 +148,7 @@ export function Navbar() {
             >
               {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
-          </motion.div>
+          </div>
         </motion.nav>
       </motion.header>
 
