@@ -16,7 +16,7 @@ export function Hero() {
           loop
           playsInline
           preload="none"
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover md:object-[center_30%]"
         >
           <source src="/7646491-uhd_2160_3840_25fps.mp4" type="video/mp4" />
         </video>
