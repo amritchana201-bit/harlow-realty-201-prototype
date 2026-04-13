@@ -32,7 +32,7 @@ export function ListingCard({ listing, index, className }: ListingCardProps) {
       <div className="absolute inset-4 bg-[#27e9b5]/[0.08] blur-[80px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none hidden lg:block" />
 
       {/* Main Card Container with overflow hidden to clip image */}
-      <div className="relative w-full h-full rounded-2xl md:rounded-3xl overflow-hidden shadow-lg transition-transform duration-500 group-hover:translate-y-[-2px]">
+      <div className="relative w-full h-full rounded-2xl md:rounded-3xl overflow-hidden border border-[#27e9b5]/50 shadow-[0_8px_32px_rgba(0,0,0,0.3),0_0_25px_rgba(39,233,181,0.25)] transition-transform duration-500 group-hover:translate-y-[-2px]">
         {/* Full-bleed background image */}
         <Image
           src={listing.image}

@@ -260,7 +260,7 @@ export function Process() {
         {/* Timeline Container */}
         <div className="relative">
           {/* Mobile/Tablet: Zig-Zag with Measured Connector */}
-          <div ref={mobileContainerRef} className="lg:hidden relative">
+          <div ref={mobileContainerRef} className="md:hidden relative">
             {mobilePositions.length > 0 && (
               <div className="absolute inset-0 pointer-events-none z-0">
                 <svg className="w-full h-full overflow-visible">
@@ -319,7 +319,7 @@ export function Process() {
               {mobileSteps.map((step, index) => (
                 <TimelineStep
                   key={step.title}
-                  ref={(el) => (mobileIconRefs.current[index] = el)}
+                  ref={(el) => { mobileIconRefs.current[index] = el }}
                   step={step}
                   index={index}
                   isActive={index === activeIndex}
@@ -330,7 +330,7 @@ export function Process() {
           </div>
 
           {/* Desktop: Horizontal Timeline (Restored) */}
-          <div className="hidden lg:block">
+          <div className="hidden md:block">
             <div ref={desktopContainerRef} className="relative flex flex-row items-start justify-between gap-0 px-8">
               
               {/* Connector SVG — drawn between icons */}
@@ -340,27 +340,15 @@ export function Process() {
                     {desktopPositions.map((pos, i) => {
                       if (i === desktopPositions.length - 1) return null
                       const nextPos = desktopPositions[i + 1]
-                      const startX = pos.x
-                      const endX = nextPos.x
-                      const midX = (startX + endX) / 2
-                      
                       const segmentDuration = 0.8
-                      const baseDelay = 0.8
+                      const baseDelay = 0
 
                       return (
                         <g key={`path-group-d-${i}`}>
-                          {/* Static Background Track */}
-                          <path
-                            d={`M ${startX},${pos.y} L ${endX},${nextPos.y}`}
-                            fill="none"
-                            stroke="rgba(39, 233, 181, 0.12)"
-                            strokeWidth="1.5"
-                            strokeLinecap="round"
-                          />
                           {/* Traveling Glowing Path */}
                           <motion.path
                             key={`path-d-${i}`}
-                            d={`M ${startX},${pos.y} L ${endX},${nextPos.y}`}
+                            d={`M ${pos.x + pos.radius},${pos.y} L ${nextPos.x - nextPos.radius},${nextPos.y}`}
                             fill="none"
                             stroke="#27e9b5"
                             strokeWidth="1.8"
@@ -385,32 +373,28 @@ export function Process() {
 
               {desktopSteps.map((step, index) => {
                 const Icon = step.icon
-                const activationDelay = 0.8 + index * 0.8
+                const activationDelay = index * 0.8
                 return (
-                  <motion.div
+                  <div
                     key={step.title}
-                    initial={{ opacity: 0, y: 24 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
                     className="flex flex-col items-center text-center flex-1 px-4"
                   >
 
                     {/* Icon circle */}
                     <motion.div
-                      ref={(el) => (desktopIconRefs.current[index] = el)}
-                      initial={{ 
-                        backgroundColor: "rgba(39, 233, 181, 0.05)", 
+                      ref={(el) => { desktopIconRefs.current[index] = el }}
+                      initial={{
+                        backgroundColor: "rgba(39, 233, 181, 0.05)",
                         borderColor: "rgba(39, 233, 181, 0.15)",
                         boxShadow: "0 0 0px rgba(39, 233, 181, 0)"
                       }}
-                      animate={isDesktopInView ? { 
+                      animate={isDesktopInView ? {
                         backgroundColor: "#27e9b5",
                         borderColor: "#27e9b5",
                         boxShadow: "0 0 30px rgba(39, 233, 181, 0.35)"
                       } : {}}
-                      transition={{ 
-                        duration: index === 0 ? 0.3 : 0.1, 
+                      transition={{
+                        duration: 0.25,
                         delay: activationDelay,
                         ease: "linear"
                       }}
@@ -419,7 +403,7 @@ export function Process() {
                       <motion.div
                         initial={{ color: "rgba(39, 233, 181, 0.4)" }}
                         animate={isDesktopInView ? { color: "#162936" } : {}}
-                        transition={{ duration: index === 0 ? 0.3 : 0.1, delay: activationDelay, ease: "linear" }}
+                        transition={{ duration: 0.25, delay: activationDelay, ease: "linear" }}
                       >
                         <Icon size={22} />
                       </motion.div>
@@ -444,7 +428,7 @@ export function Process() {
                     >
                       {step.description}
                     </motion.p>
-                  </motion.div>
+                  </div>
                 )
               })}
             </div>

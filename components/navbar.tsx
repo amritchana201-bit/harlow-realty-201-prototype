@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
-import Link from 'next/link'
+import { usePathname, useRouter } from 'next/navigation'
 
 const navLinks = [
   { href: '/', label: 'Home' },
@@ -17,6 +17,8 @@ const navLinks = [
 export function Navbar() {
   const [isMerged, setIsMerged] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const pathname = usePathname()
+  const router = useRouter()
 
   useEffect(() => {
     const heroSection = document.getElementById('home')
@@ -40,6 +42,19 @@ export function Navbar() {
 
   const handleLinkClick = () => {
     setIsMobileMenuOpen(false)
+  }
+
+  const handleLogoClick = () => {
+    const isAtTop = window.scrollY < 10
+    if (pathname === '/') {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    } else {
+      if (isAtTop) {
+        router.push('/')
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+      }
+    }
   }
 
   return (
@@ -85,13 +100,13 @@ export function Navbar() {
               transition={{ duration: 0.3, ease: 'easeInOut' }}
               className="absolute inset-0 z-[-1] backdrop-blur-md border border-white/10 rounded-2xl md:rounded-3xl bg-black/30 shadow-[0_4px_24px_rgba(0,0,0,0.2)] pointer-events-none"
             />
-            <Link
-              href="#home"
-              className="text-xl md:text-2xl font-semibold text-[#F5F5F5] tracking-tight whitespace-nowrap"
+            <button
+              onClick={handleLogoClick}
+              className="text-xl md:text-2xl font-semibold text-[#F5F5F5] tracking-tight whitespace-nowrap cursor-pointer"
             >
               <span className="text-[#F5F5F5]">Harlow</span>{' '}
               <span className="text-[#27e9b5]">Realty</span>
-            </Link>
+            </button>
           </motion.div>
 
           {/* Navigation Pill Wrapper */}

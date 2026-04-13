@@ -123,7 +123,7 @@ export function Testimonials() {
       {/* Carousel Container */}
       <div className="relative">
         {/* Navigation Arrows */}
-        <div className="hidden md:flex absolute -left-4 lg:-left-12 top-1/2 -translate-y-1/2 z-10">
+        <div className="hidden md:max-lg:flex absolute -left-4 top-1/2 -translate-y-1/2 z-10">
           <Button
             variant="outline"
             size="icon"
@@ -140,7 +140,7 @@ export function Testimonials() {
           </Button>
         </div>
 
-        <div className="hidden md:flex absolute -right-4 lg:-right-12 top-1/2 -translate-y-1/2 z-10">
+        <div className="hidden md:max-lg:flex absolute -right-4 top-1/2 -translate-y-1/2 z-10">
           <Button
             variant="outline"
             size="icon"
@@ -182,6 +182,38 @@ export function Testimonials() {
 
         {/* Mobile Navigation */}
         <div className="flex md:hidden justify-center gap-4 mt-8">
+          <Button
+            variant="outline"
+            size="icon"
+            onClick={goToPrev}
+            disabled={!canGoPrev}
+            className={cn(
+              'h-12 w-12 rounded-full border-white/20 bg-black/30 backdrop-blur-md shadow-md',
+              'hover:bg-white/10 hover:border-[#27e9b5]/40 transition-all',
+              'disabled:opacity-40 disabled:cursor-not-allowed'
+            )}
+            aria-label="Previous testimonial"
+          >
+            <ChevronLeft className="h-6 w-6 text-[#27e9b5]" />
+          </Button>
+          <Button
+            variant="outline"
+            size="icon"
+            onClick={goToNext}
+            disabled={!canGoNext}
+            className={cn(
+              'h-12 w-12 rounded-full border-white/20 bg-black/30 backdrop-blur-md shadow-md',
+              'hover:bg-white/10 hover:border-[#27e9b5]/40 transition-all',
+              'disabled:opacity-40 disabled:cursor-not-allowed'
+            )}
+            aria-label="Next testimonial"
+          >
+            <ChevronRight className="h-6 w-6 text-[#27e9b5]" />
+          </Button>
+        </div>
+
+        {/* Desktop Bottom Navigation */}
+        <div className="hidden lg:flex justify-center gap-4 mt-8">
           <Button
             variant="outline"
             size="icon"

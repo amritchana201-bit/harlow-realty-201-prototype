@@ -33,7 +33,7 @@ export function AgentCard({ agent, index, className }: AgentCardProps) {
       whileHover={{ scale: 1.02 }}
       className={cn(
         'group bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden',
-        'border border-gray-100 hover:border-harlow-primary/30',
+        'border border-[#27e9b5]/20 hover:border-[#27e9b5]/60',
         className
       )}
       style={{
@@ -42,7 +42,7 @@ export function AgentCard({ agent, index, className }: AgentCardProps) {
       onMouseEnter={(e) => {
         e.currentTarget.style.setProperty(
           '--agent-card-shadow',
-          '0 20px 40px -12px rgba(126, 200, 216, 0.25)'
+          '0 20px 40px -12px rgba(0, 0, 0, 0.4), 0 0 25px rgba(39, 233, 181, 0.25)'
         )
       }}
       onMouseLeave={(e) => {

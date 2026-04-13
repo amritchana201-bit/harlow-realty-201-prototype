@@ -144,7 +144,7 @@ export function Contact() {
                       errors.name ? 'text-red-500' : 'text-[#F5F5F5]/80'
                     )}
                   >
-                    Name *
+                    Name
                   </label>
                   <Input
                     id="name"
@@ -168,7 +168,7 @@ export function Contact() {
                       errors.email ? 'text-red-500' : 'text-[#F5F5F5]/80'
                     )}
                   >
-                    Email *
+                    Email
                   </label>
                   <Input
                     id="email"
@@ -211,7 +211,7 @@ export function Contact() {
                     errors.message ? 'text-red-500' : 'text-[#F5F5F5]/80'
                   )}
                 >
-                  Message *
+                  Message
                 </label>
                 <Textarea
                   id="message"

@@ -1,6 +1,7 @@
 import { Navbar } from '@/components/navbar'
 import { Hero } from '@/components/hero'
 import { AgentCards } from '@/components/agent-cards'
+import { Authority } from '@/components/authority'
 import { Stats } from '@/components/stats'
 import { FeaturedListings } from '@/components/featured-listings'
 import { Process } from '@/components/process'
@@ -15,6 +16,7 @@ export default function Home() {
       <main>
         <Hero />
         <AgentCards />
+        <Authority />
         <Stats />
         <FeaturedListings />
         <Process />

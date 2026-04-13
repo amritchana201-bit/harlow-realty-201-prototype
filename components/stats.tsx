@@ -52,12 +52,14 @@ function StatItem({
   label,
   index,
   shouldAnimate,
+  glowActive,
 }: {
   value: number
   suffix: string
   label: string
   index: number
   shouldAnimate: boolean
+  glowActive: boolean
 }) {
   const count = useCountUp(value, 1500, shouldAnimate)
 
@@ -73,10 +75,18 @@ function StatItem({
       }}
       className="relative p-6 lg:p-5 text-center group"
     >
-      {/* Subtle ambient glow behind each stat */}
-      <div className="absolute inset-0 bg-[#27e9b5]/[0.03] blur-[60px] rounded-full group-hover:bg-[#27e9b5]/[0.06] transition-colors duration-700" />
-      
-      <div className="relative text-4xl md:text-5xl lg:text-4xl xl:text-5xl font-semibold mb-2">
+      {/* Ambient glow behind each stat — pulses on scroll-in across all devices */}
+      <div
+        className={`absolute inset-0 blur-[60px] rounded-full transition-colors duration-700 ${
+          glowActive ? 'bg-[#27e9b5]/[0.12]' : 'bg-[#27e9b5]/[0.03] group-hover:bg-[#27e9b5]/[0.06]'
+        }`}
+      />
+
+      <div
+        className={`relative text-4xl md:text-5xl lg:text-4xl xl:text-5xl font-semibold mb-2 transition-all duration-700 ${
+          glowActive ? 'drop-shadow-[0_0_14px_rgba(39,233,181,0.75)]' : ''
+        }`}
+      >
         <span className="text-[#27e9b5]">
           {shouldAnimate ? count : 0}
           {suffix}
@@ -90,9 +100,18 @@ function StatItem({
 export function Stats() {
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, amount: 0.2 })
+  const isCurrentlyInView = useInView(ref, { once: false, amount: 0.3 })
+  const [glowActive, setGlowActive] = useState(false)
+
+  useEffect(() => {
+    if (!isCurrentlyInView) return
+    setGlowActive(true)
+    const timer = setTimeout(() => setGlowActive(false), 3000)
+    return () => clearTimeout(timer)
+  }, [isCurrentlyInView])
 
   return (
-    <SectionWrapper ref={ref} bgColor="black" className="pt-8 md:pt-12 pb-24">
+    <SectionWrapper ref={ref} bgColor="black">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 lg:gap-4">
         {stats.map((stat, index) => (
           <StatItem
@@ -102,6 +121,7 @@ export function Stats() {
             label={stat.label}
             index={index}
             shouldAnimate={isInView}
+            glowActive={glowActive}
           />
         ))}
       </div>
