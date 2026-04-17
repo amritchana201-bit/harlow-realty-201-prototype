@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState, useRef } from 'react'
-import { motion, useInView } from 'framer-motion'
+import { motion, useInView, useMotionValue, useTransform, animate } from 'framer-motion'
 import { SectionWrapper } from '@/components/ui/section-wrapper'
 
 const stats = [
@@ -11,6 +11,8 @@ const stats = [
   { value: 98, suffix: '%', label: 'Client Satisfaction' },
 ]
 
+/*
+// Original React-based loop (Commented out for performance, see new implementation in StatItem)
 function useCountUp(
   end: number,
   duration: number = 1500,
@@ -45,6 +47,7 @@ function useCountUp(
 
   return count
 }
+*/
 
 function StatItem({
   value,
@@ -61,7 +64,25 @@ function StatItem({
   shouldAnimate: boolean
   glowActive: boolean
 }) {
-  const count = useCountUp(value, 1500, shouldAnimate)
+  // const count = useCountUp(value, 1500, shouldAnimate)
+  
+  // Framer Motion performant value tracking
+  const count = useMotionValue(0)
+  const roundedCount = useTransform(count, Math.round)
+
+  useEffect(() => {
+    if (shouldAnimate) {
+      // Micro-delay staggered start to let layout paint first
+      const timeoutId = setTimeout(() => {
+        animate(count, value, {
+          duration: 1.5,
+          ease: [0.22, 1, 0.36, 1] 
+        })
+      }, index * 100 + 150)
+      
+      return () => clearTimeout(timeoutId)
+    }
+  }, [shouldAnimate, value, count, index])
 
   return (
     <motion.div
@@ -76,19 +97,20 @@ function StatItem({
       className="relative p-6 lg:p-5 text-center group"
     >
       {/* Ambient glow behind each stat — pulses on scroll-in across all devices */}
+      {/* CPU Optimization: Added hardware acceleration classes */}
       <div
-        className={`absolute inset-0 blur-[60px] rounded-full transition-colors duration-700 ${
+        className={`absolute inset-0 blur-[60px] rounded-full transition-colors duration-700 will-change-transform transform-gpu translate-z-0 ${
           glowActive ? 'bg-[#27e9b5]/[0.12]' : 'bg-[#27e9b5]/[0.03] group-hover:bg-[#27e9b5]/[0.06]'
         }`}
       />
 
       <div
-        className={`relative text-4xl md:text-5xl lg:text-4xl xl:text-5xl font-semibold mb-2 transition-all duration-700 ${
+        className={`relative text-4xl md:text-5xl lg:text-4xl xl:text-5xl font-semibold mb-2 transition-all duration-700 will-change-transform transform-gpu translate-z-0 ${
           glowActive ? 'drop-shadow-[0_0_14px_rgba(39,233,181,0.75)]' : ''
         }`}
       >
         <span className="text-[#27e9b5]">
-          {shouldAnimate ? count : 0}
+          <motion.span>{roundedCount}</motion.span>
           {suffix}
         </span>
       </div>
