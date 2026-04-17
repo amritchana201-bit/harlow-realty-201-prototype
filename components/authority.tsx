@@ -134,7 +134,7 @@ export function Authority() {
         </div>
 
         {/* Card Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
+        <div className="authority-grid grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
           {features.map((feature, index) => (
             <FeatureCard key={feature.title} feature={feature} index={index} />
           ))}

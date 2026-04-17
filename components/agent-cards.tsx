@@ -16,27 +16,16 @@ export function AgentCards() {
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           className="order-1 md:order-1"
         >
-          {/* Mobile/tablet headline above image */}
-          <motion.h2
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="block md:hidden text-4xl font-semibold text-[#F5F5F5] mb-5 leading-tight text-center"
-          >
-            Meet <span className="text-[#27e9b5]">Chris</span> and{' '}
-            <span className="text-[#27e9b5]">Sarah</span>
-          </motion.h2>
-
-          <div className="aspect-[3/2] max-w-sm mx-auto rounded-[20px] md:aspect-[4/3] md:max-w-none md:rounded-[24px] overflow-hidden shadow-2xl border border-white/5">
+          <div className="agent-image-desktop relative aspect-[3/4] max-w-sm mx-auto rounded-[24px] md:aspect-[4/5] md:max-w-none overflow-hidden shadow-2xl border border-white/10">
             <Image
               src="/Real estate agents in front of a house.png"
               alt="Chris and Sarah - Real estate agents"
-              width={800}
-              height={1000}
-              className="w-full h-full object-cover object-center"
+              fill
+              className="object-cover object-center"
               priority
             />
+            {/* Gradient fade — grows naturally out of the image */}
+            <div className="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-black/80 via-black/40 to-transparent pointer-events-none" />
           </div>
         </motion.div>
 
@@ -47,10 +36,10 @@ export function AgentCards() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="hidden md:block text-4xl md:text-5xl lg:text-6xl font-semibold text-[#F5F5F5] mb-5 md:mb-8 leading-tight"
+            className="text-3xl md:text-5xl lg:text-6xl font-semibold text-[#F5F5F5] mb-5 md:mb-8 leading-tight"
           >
-            Meet <span className="text-[#27e9b5]">Chris</span> and{' '}
-            <span className="text-[#27e9b5]">Sarah</span>
+            Meet <span className="text-[#27e9b5]">Sarah</span> and{' '}
+            <span className="text-[#27e9b5]">Chris</span>
           </motion.h2>
 
           <motion.p
@@ -58,7 +47,7 @@ export function AgentCards() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
-            className="text-xl md:text-2xl text-[#F5F5F5]/80 leading-relaxed max-w-xl mx-auto md:mx-0"
+            className="text-sm md:text-base text-[#F5F5F5] leading-relaxed max-w-xl mx-auto md:mx-0"
           >
             From the <span className="text-[#27e9b5]">first hello</span> to the final move, they are here to <span className="text-[#27e9b5]">guide</span> you.
           </motion.p>

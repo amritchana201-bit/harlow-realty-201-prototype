@@ -7,8 +7,7 @@ import { cn } from '@/lib/utils'
 import { usePathname, useRouter } from 'next/navigation'
 
 const navLinks = [
-  { href: '/', label: 'Home' },
-  { href: '#properties', label: 'Properties' },
+  { href: '#properties', label: 'Listings' },
   { href: '#agents', label: 'Agents' },
   { href: '#testimonials', label: 'Testimonials' },
   { href: '#contact', label: 'Contact' },

@@ -119,3 +119,13 @@
     }
   }
 }
+
+/* Override rules for Desktop view scaling mapping precisely to 100% zoom (900px+) */
+@media (min-width: 900px) {
+  .authority-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+  .agent-image-desktop {
+    aspect-ratio: 3 / 2 !important;
+  }
+}

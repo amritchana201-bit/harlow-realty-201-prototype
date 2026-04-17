@@ -98,13 +98,13 @@ export function FeaturedListings() {
         </div>
 
         {/* Responsive Grid with 3:9 Visibility Logic */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {listings.map((listing, index) => (
             <div 
               key={`${listing.address}-${index}`}
               className={cn(
-                index >= 3 && 'hidden md:block',      // 3 on Mobile, 9 on MD+
-                index >= 9 && 'hidden'                // Cap at 9 total
+                index >= 3 && index < 6 && 'hidden md:block',          // 3 on mobile, show on tablet+
+                index >= 6 && 'hidden'                                 // max 6 properties globally
               )}
             >
               <ListingCard listing={listing} index={index} />
