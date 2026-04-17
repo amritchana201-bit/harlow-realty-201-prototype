@@ -18,7 +18,7 @@ export function Hero() {
           preload="none"
           className="absolute inset-0 w-full h-full object-cover md:object-[center_30%]"
         >
-          <source src="/7646491-uhd_2160_3840_25fps.mp4" type="video/mp4" />
+          <source src="/GOAT.mp4" type="video/mp4" />
         </video>
         {/* Dark gradient overlay for text readability - subtle at top, stronger at bottom */}
         <div
