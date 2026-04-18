@@ -61,7 +61,7 @@ export function Navbar() {
       <motion.header
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 2 }}
+        transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 1 }}
         className="fixed top-3 left-3 right-3 sm:top-4 sm:left-4 sm:right-4 md:top-6 md:left-6 md:right-6 z-50 pointer-events-none will-change-transform"
       >
         <motion.nav
