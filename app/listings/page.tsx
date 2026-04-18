@@ -3,14 +3,64 @@ import { Footer } from '@/components/footer'
 import { SectionWrapper } from '@/components/ui/section-wrapper'
 import { ListingCard } from '@/components/ui/listing-card'
 
-const placeholderListing = {
-  address: '123 Lakeshore Blvd W, Toronto',
-  price: '$2,450,000',
-  beds: 4,
-  baths: 3,
-  sqft: '3,200',
-  image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=450&fit=crop',
-}
+const listings = [
+  {
+    address: '123 Lakeshore Blvd W, Toronto',
+    price: '$2,450,000',
+    beds: 4,
+    baths: 3,
+    sqft: '3,200',
+    image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=450&fit=crop',
+  },
+  {
+    address: '456 King Street E, Toronto',
+    price: '$1,875,000',
+    beds: 3,
+    baths: 2,
+    sqft: '2,100',
+    image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&h=450&fit=crop',
+  },
+  {
+    address: '789 Trafalgar Rd, Oakville',
+    price: '$3,200,000',
+    beds: 5,
+    baths: 4,
+    sqft: '4,500',
+    image: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&h=450&fit=crop',
+  },
+  {
+    address: '321 Dundas St W, Mississauga',
+    price: '$1,650,000',
+    beds: 4,
+    baths: 3,
+    sqft: '2,800',
+    image: 'https://images.unsplash.com/photo-1600573472550-8090b5e0745e?w=800&h=450&fit=crop',
+  },
+  {
+    address: '555 Bay Street, Toronto',
+    price: '$2,100,000',
+    beds: 3,
+    baths: 2,
+    sqft: '2,400',
+    image: 'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&h=450&fit=crop',
+  },
+  {
+    address: '888 Spadina Ave, Toronto',
+    price: '$1,950,000',
+    beds: 2,
+    baths: 2,
+    sqft: '1,800',
+    image: 'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800&h=450&fit=crop',
+  },
+  {
+    address: '222 Queen St W, Toronto',
+    price: '$2,800,000',
+    beds: 4,
+    baths: 3,
+    sqft: '3,100',
+    image: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&h=450&fit=crop',
+  },
+]
 
 export const metadata = {
   title: 'All Listings | Harlow Realty',
@@ -33,15 +83,9 @@ export default function ListingsPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <ListingCard listing={placeholderListing} index={0} />
-            
-            {/* Supporting text in the grid to explain the placeholder nature */}
-            <div className="flex flex-col justify-center p-8 rounded-2xl md:rounded-3xl border border-white/5 bg-white/[0.02]">
-              <h3 className="text-[#27e9b5] text-xl font-medium mb-3">Expanding Soon</h3>
-              <p className="text-white/40 text-sm leading-relaxed">
-                We are currently migrating our full property database to this new portal. Check back shortly for updated luxury inventory in Toronto, Oakville, and Mississauga.
-              </p>
-            </div>
+            {listings.map((listing, index) => (
+              <ListingCard key={index} listing={listing} index={index} />
+            ))}
           </div>
         </SectionWrapper>
       </main>

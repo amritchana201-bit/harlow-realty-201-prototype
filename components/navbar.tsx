@@ -7,10 +7,10 @@ import { cn } from '@/lib/utils'
 import { usePathname, useRouter } from 'next/navigation'
 
 const navLinks = [
-  { href: '#properties', label: 'Listings' },
-  { href: '#agents', label: 'Agents' },
-  { href: '#testimonials', label: 'Testimonials' },
-  { href: '#contact', label: 'Contact' },
+  { href: '/#properties', label: 'Listings' },
+  { href: '/#agents', label: 'Agents' },
+  { href: '/#testimonials', label: 'Testimonials' },
+  { href: '/#contact', label: 'Contact' },
 ]
 
 export function Navbar() {
